@@ -67,4 +67,16 @@ public class PolicyServicesImp implements IPolicyServices {
 		return policyrepo.findAll();
 	}
 
+
+	@Override
+	public List<Policy> getByPremiumLessThan(long premium) {
+		return policyrepo.findByPremiumLessThan(premium);
+	}
+
+
+	@Override
+	public List<Policy> getByPremiumGreaterThan(long premium) {
+		return policyrepo.findByPremiumGreaterThan(premium);
+	}
+
 }

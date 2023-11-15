@@ -69,6 +69,21 @@ public class UserServicesImp implements IUserServices {
 		return userRepo.findAll();
 	}
 
+	@Override
+	public List<User> getUserByFname(String fname) {
+		return userRepo.findByFname(fname);
+	}
+
+	@Override
+	public List<User> getUserByUserType(String userType) {
+		return userRepo.findByUserType(userType);
+	}
+
+	@Override
+	public List<User> getUserByUserCategory(String userCategory) {
+		return userRepo.findByUserCategory(userCategory);
+	}
+
 	
 	
 }

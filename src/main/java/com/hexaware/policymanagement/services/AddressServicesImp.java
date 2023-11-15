@@ -33,6 +33,7 @@ public class AddressServicesImp implements IAddressServices {
 	public Address updateAddress(AddressDTO addressDTO) {
 		Address address = new Address(); 
 
+		address.setAddressId(addressDTO.getAddressId());
 		address.setAddressLine(addressDTO.getAddressLine());
 		address.setCity(addressDTO.getCity());
 		address.setState(addressDTO.getState());
@@ -53,6 +54,18 @@ public class AddressServicesImp implements IAddressServices {
 	public List<Address> getAllAddress() {
 		
 		return addressrepo.findAll();
+	}
+
+	@Override
+	public List<Address> getByState(String state) {
+		
+		return addressrepo.findByState(state);
+	}
+
+	@Override
+	public List<Address> getByCity(String city) {
+		
+		return addressrepo.findByCity(city);
 	}
 
 }

@@ -13,5 +13,9 @@ public interface PolicyRepository extends JpaRepository<Policy, Long>
 	public List<Policy> findByPolicyType(String policyType);
 	
 	public List<Policy> findByCompany(String company);
+	
+	public List<Policy> findByPremiumGreaterThan(long premium);
+	
+	public List<Policy> findByPremiumLessThan(long premium); 
 
 }

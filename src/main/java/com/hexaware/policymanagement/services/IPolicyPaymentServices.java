@@ -5,7 +5,7 @@ import java.util.List;
 import com.hexaware.policymanagement.dto.PolicyPaymentDTO;
 import com.hexaware.policymanagement.entity.PolicyPayment;
 
-public interface IPolicyPaymetServices 
+public interface IPolicyPaymentServices 
 {
 	public PolicyPayment createPolicyPayment(PolicyPaymentDTO policyPaymentDTO);
 	public PolicyPayment updatePolicyPayment(PolicyPaymentDTO policyPaymentDTO);

@@ -2,13 +2,6 @@ package com.hexaware.policymanagement.dto;
 
 import java.time.LocalDate;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
 import com.hexaware.policymanagement.entity.Policy;
 import com.hexaware.policymanagement.entity.PolicyPayment;
 import com.hexaware.policymanagement.entity.User;

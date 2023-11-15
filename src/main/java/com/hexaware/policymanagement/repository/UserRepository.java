@@ -10,13 +10,13 @@ import com.hexaware.policymanagement.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> 
 {
-	//public List<User> findByFname(String fname);
+	public List<User> findByFname(String fname);
 	
-	//public List<User> findByUserType(String userType);
+	public List<User> findByUserType(String userType);
 	
 	public User findByMobNo(String mobNo);
 	
-	//public List<User> findByUserCategory(String userCategory);
+	public List<User> findByUserCategory(String userCategory);
 	
 	public User findByEmail(String email);
 

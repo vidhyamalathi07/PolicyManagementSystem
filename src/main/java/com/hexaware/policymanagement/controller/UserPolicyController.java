@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hexaware.policymanagement.dto.UserPolicyDTO;
 import com.hexaware.policymanagement.entity.UserPolicy;
 import com.hexaware.policymanagement.services.IUserPolicyServices;
 
@@ -19,30 +20,33 @@ import com.hexaware.policymanagement.services.IUserPolicyServices;
 @RequestMapping("/api/userpolicies")
 public class UserPolicyController 
 {
+	private final IUserPolicyServices service;
+	
 	@Autowired
-	IUserPolicyServices service;
-	
-	
-	
-	@PostMapping(value = "/add")
-	public UserPolicy createUserPolicy(@RequestBody UserPolicy policy)
+	public UserPolicyController(IUserPolicyServices service) {
+		super();
+		this.service = service;
+	}
+
+
+	@PostMapping(value = "/add",consumes = "application/json",produces = "application/json")
+	public UserPolicy createUserPolicy(@RequestBody UserPolicyDTO userPolicyDTO)
 	{
-		return service.createUserPolicy(policy);
+		return service.createUserPolicy(userPolicyDTO);
 	}
 	
 	
-	@PutMapping(value = "/update")
-	public UserPolicy updateUserPolicy(@RequestBody UserPolicy policy)
+	@PutMapping(value = "/update",consumes = "application/json",produces = "application/json")
+	public UserPolicy updateUserPolicy(@RequestBody UserPolicyDTO userPolicyDTO)
 	{
-		return service.updateUserPolicy(policy);
+		return service.updateUserPolicy(userPolicyDTO);
 	}
 	
 	
-	@DeleteMapping(value = "/delete/{policyNo}")
-	public void deleteUserPolicyById(@PathVariable int policyNo)
+	@DeleteMapping(value = "/delete/{policyNo}",consumes = "application/json")
+	public void deleteUserPolicyByPolicyNo(@PathVariable long policyNo)
 	{
 		service.deleteUserPolicyByPolicyNo(policyNo);
-		System.out.println("Record has been deleted");
 	}
 	
 	
@@ -54,8 +58,8 @@ public class UserPolicyController
 	}
 	
 	
-	@GetMapping(value = "/get/{policyNo}")
-	public UserPolicy getUserPolicyByPolicyNo(@PathVariable int policyNo)
+	@GetMapping(value = "/get/{policyNo}",produces = "application/json")
+	public UserPolicy getUserPolicyByPolicyNo(@PathVariable long policyNo)
 	{
 		return service.getUserPolicyByPolicyNo(policyNo);
 		

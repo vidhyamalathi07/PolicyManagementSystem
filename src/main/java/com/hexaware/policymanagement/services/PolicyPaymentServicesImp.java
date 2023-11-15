@@ -10,7 +10,7 @@ import com.hexaware.policymanagement.entity.PolicyPayment;
 import com.hexaware.policymanagement.repository.PolicyPaymentRepository;
 
 @Service
-public class PolicyPaymentServicesImp implements IPolicyPaymetServices {
+public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
 	
 	@Autowired
 	PolicyPaymentRepository policypayrepo;
