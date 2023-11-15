@@ -20,15 +20,9 @@ import com.hexaware.policymanagement.services.IUserPolicyServices;
 @RequestMapping("/api/v1/userpolicies")
 public class UserPolicyController 
 {
-	private final IUserPolicyServices service;
-	
 	@Autowired
-	public UserPolicyController(IUserPolicyServices service) {
-		super();
-		this.service = service;
-	}
-
-
+	IUserPolicyServices service;
+	
 	@PostMapping(value = "/add",consumes = "application/json",produces = "application/json")
 	public UserPolicy createUserPolicy(@RequestBody UserPolicyDTO userPolicyDTO)
 	{

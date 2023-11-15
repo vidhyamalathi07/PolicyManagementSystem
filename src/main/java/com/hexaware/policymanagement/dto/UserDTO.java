@@ -23,7 +23,7 @@ public class UserDTO
 	
 	private Address address;
 	
-	private Set<UserPolicy> users = new HashSet<UserPolicy>();
+	private Set<UserPolicy> users = new HashSet<>();
 
 	public long getUserId() {
 		return userId;

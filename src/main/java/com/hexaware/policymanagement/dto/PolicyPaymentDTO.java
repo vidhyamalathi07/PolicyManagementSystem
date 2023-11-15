@@ -8,10 +8,10 @@ public class PolicyPaymentDTO
 {
 	private long txnId;
 	private LocalDate paymentDate;
-	private long amount;
+	private double amount;
 	private String bank;
 	private String paymentStatus;
-	private long fine;
+	private double fine;
 	
 	private UserPolicy userPolicy;
 
@@ -31,11 +31,11 @@ public class PolicyPaymentDTO
 		this.paymentDate = paymentDate;
 	}
 
-	public long getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(long amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
@@ -55,11 +55,11 @@ public class PolicyPaymentDTO
 		this.paymentStatus = paymentStatus;
 	}
 
-	public long getFine() {
+	public double getFine() {
 		return fine;
 	}
 
-	public void setFine(long fine) {
+	public void setFine(double fine) {
 		this.fine = fine;
 	}
 
@@ -71,8 +71,8 @@ public class PolicyPaymentDTO
 		this.userPolicy = userPolicy;
 	}
 
-	public PolicyPaymentDTO(long txnId, LocalDate paymentDate, long amount, String bank, String paymentStatus,
-			long fine, UserPolicy userPolicy) {
+	public PolicyPaymentDTO(long txnId, LocalDate paymentDate, double amount, String bank, String paymentStatus,
+			double fine, UserPolicy userPolicy) {
 		super();
 		this.txnId = txnId;
 		this.paymentDate = paymentDate;
@@ -85,7 +85,6 @@ public class PolicyPaymentDTO
 
 	public PolicyPaymentDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

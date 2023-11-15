@@ -20,15 +20,9 @@ import com.hexaware.policymanagement.services.IAddressServices;
 @RequestMapping("/api/v1/addresses")
 public class AddressController 
 {
-	
-	private final IAddressServices service;
-	
 	@Autowired
-	public AddressController(IAddressServices service) {
-		super();
-		this.service = service;
-	}
-
+	IAddressServices service;
+	
 
 	@PostMapping(value = "/add",consumes = "application/json",produces = "application/json")
 	public Address createAddress(@RequestBody AddressDTO addressDTO)

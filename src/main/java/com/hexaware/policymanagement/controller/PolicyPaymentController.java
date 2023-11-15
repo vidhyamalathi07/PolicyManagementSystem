@@ -20,13 +20,8 @@ import com.hexaware.policymanagement.services.IPolicyPaymentServices;
 @RequestMapping("/api/v1/policy-payment")
 public class PolicyPaymentController 
 {
-private final IPolicyPaymentServices service;
-	
 	@Autowired
-	public PolicyPaymentController(IPolicyPaymentServices service) {
-		super();
-		this.service = service;
-	}
+	IPolicyPaymentServices service;
 
 
 	@PostMapping(value = "/add",consumes = "application/json",produces = "application/json")

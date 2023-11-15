@@ -79,7 +79,6 @@ public class AddressDTO
 
 	public AddressDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	

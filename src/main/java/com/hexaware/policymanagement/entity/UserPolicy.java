@@ -25,7 +25,7 @@ public class UserPolicy implements Serializable
 	private String paymentInterval;
 	private double amount;
 	private int tenure;
-	private double maturityamount;
+	private double maturityAmount;
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
@@ -114,16 +114,16 @@ public class UserPolicy implements Serializable
 		this.tenure = tenure;
 	}
 	public double getMaturityamount() {
-		return maturityamount;
+		return maturityAmount;
 	}
-	public void setMaturityamount(double maturityamount) {
-		this.maturityamount = maturityamount;
+	public void setMaturityamount(double maturityAmount) {
+		this.maturityAmount = maturityAmount;
 	}
 	
 	
 	public UserPolicy(long policyNo, LocalDate startDate, User user, Policy policy, PolicyPayment policyPayment,
 			 String policyName, String policyType, String company, LocalDate endDate,
-			String paymentInterval, double amount, int tenure, double maturityamount) {
+			String paymentInterval, double amount, int tenure, double maturityAmount) {
 		super();
 		this.policyNo = policyNo;
 		this.startDate = startDate;
@@ -137,7 +137,7 @@ public class UserPolicy implements Serializable
 		this.paymentInterval = paymentInterval;
 		this.amount = amount;
 		this.tenure = tenure;
-		this.maturityamount = maturityamount;
+		this.maturityAmount = maturityAmount;
 	}
 	
 	
@@ -149,7 +149,7 @@ public class UserPolicy implements Serializable
 		return "UserPolicy [policyNo=" + policyNo + ", startDate=" + startDate + ", user=" + user + ", policy=" + policy
 				+ ", policyPayment=" + policyPayment + ", policyName=" + policyName + ", policyType=" + policyType
 				+ ", company=" + company + ", endDate=" + endDate + ", paymentInterval=" + paymentInterval + ", amount="
-				+ amount + ", tenure=" + tenure + ", maturityamount=" + maturityamount + "]";
+				+ amount + ", tenure=" + tenure + ", maturityAmount=" + maturityAmount + "]";
 	}
 	
 }

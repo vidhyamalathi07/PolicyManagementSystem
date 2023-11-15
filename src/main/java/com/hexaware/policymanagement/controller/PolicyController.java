@@ -22,16 +22,8 @@ import com.hexaware.policymanagement.services.IPolicyServices;
 @RequestMapping("/api/v1/policies")
 public class PolicyController 
 {
-	
-	private final IPolicyServices service;
-	
 	@Autowired
-	public PolicyController(IPolicyServices service) {
-		super();
-		this.service = service;
-	}
-	
-	
+	IPolicyServices service;
 	
 	@PostMapping(value = "/add",consumes = "application/json",produces = "application/json")
 	public Policy addPolicy(@RequestBody PolicyDTO policyDTO)

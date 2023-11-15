@@ -16,7 +16,7 @@ public class PolicyDTO
 	private int tenure;
 	private double maturityAmount;
 	
-	private Set<UserPolicy> policies = new HashSet<UserPolicy>();
+	private Set<UserPolicy> policies = new HashSet<>();
 
 	public long getPolicyId() {
 		return policyId;

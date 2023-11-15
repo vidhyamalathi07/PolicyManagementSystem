@@ -20,15 +20,9 @@ import com.hexaware.policymanagement.services.IUserServices;
 @RequestMapping("/api/v1/users")
 public class UserController 
 {
-private final IUserServices service;
-	
 	@Autowired
-	public UserController(IUserServices service) {
-		super();
-		this.service = service;
-	}
-
-
+	IUserServices service;
+	
 	@PostMapping(value = "/add")
 	public User createUser(@RequestBody UserDTO userDTO)
 	{
