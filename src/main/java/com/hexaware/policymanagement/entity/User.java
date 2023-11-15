@@ -7,30 +7,48 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
-@Table(name="User_details")
 public class User implements Serializable
 {
-
+	private static final long serialVersionUID = 1L;
 		@Id
-		@GeneratedValue(strategy = GenerationType.AUTO)
 		private long userId;
+		@NotNull
+		@NotBlank
+		@Pattern(regexp="[A-Z][a-z]{3,10}")
 		private String fname;
+		@NotNull
+		@NotBlank
+		@Pattern(regexp="[A-Z][a-z]{3,10}")
 		private String lname;
+		@NotNull
+		@NotBlank
+		@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$")
 		private String password;
+		@Email
 		private String email;
+
+		@Pattern(regexp="^[6-9]{1}[0-9]{9}$")
 		private String mobNo;
+		@NotNull
+		@NotBlank
 		private String userType;
+		@NotNull
+		@NotBlank
+		@Pattern(regexp="[A-Z]")
 		private String userCategory;
+		
+		@Pattern(regexp="^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$")
 		private LocalDate dob;
 		
 		@OneToOne(cascade = CascadeType.ALL)
@@ -39,7 +57,7 @@ public class User implements Serializable
 		
 		
 		@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-		private Set<UserPolicy> users = new HashSet<UserPolicy>();
+		private Set<UserPolicy> users = new HashSet<>();
 		
 		
 		
@@ -136,7 +154,6 @@ public class User implements Serializable
 		
 		public User() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 		public void addUserPolicy(UserPolicy user)
 		{

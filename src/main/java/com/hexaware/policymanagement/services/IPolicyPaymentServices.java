@@ -11,7 +11,7 @@ public interface IPolicyPaymentServices
 	public PolicyPayment updatePolicyPayment(PolicyPaymentDTO policyPaymentDTO);
 	public void deletePolicyPaymentByTxnId(long txnId);
 	public PolicyPayment getPolicyPaymentByTxnId(long txnId);
-    public PolicyPayment getPolicyPaymentByPolicyNo(PolicyPayment PolicyNo);
+    public PolicyPayment getPolicyPaymentByPolicyNo(PolicyPayment policyNo);
 
 
 	

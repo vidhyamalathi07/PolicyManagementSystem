@@ -19,9 +19,9 @@ public class UserPolicyDTO
 	private String company;
 	private LocalDate endDate;
 	private String paymentInterval;
-	private long amount;
+	private double amount;
 	private int tenure;
-	private long maturityamount;
+	private double maturityamount;
 	
 	
 	
@@ -85,10 +85,10 @@ public class UserPolicyDTO
 	public void setPaymentInterval(String paymentInterval) {
 		this.paymentInterval = paymentInterval;
 	}
-	public long getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(long amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 	public int getTenure() {
@@ -97,17 +97,17 @@ public class UserPolicyDTO
 	public void setTenure(int tenure) {
 		this.tenure = tenure;
 	}
-	public long getMaturityamount() {
+	public double getMaturityamount() {
 		return maturityamount;
 	}
-	public void setMaturityamount(long maturityamount) {
+	public void setMaturityamount(double maturityamount) {
 		this.maturityamount = maturityamount;
 	}
 	
 	
 	public UserPolicyDTO(long policyNo, LocalDate startDate, User user, Policy policy, PolicyPayment policyPayment,
 			 String policyName, String policyType, String company, LocalDate endDate,
-			String paymentInterval, long amount, int tenure, long maturityamount) {
+			String paymentInterval, double amount, int tenure, double maturityamount) {
 		super();
 		this.policyNo = policyNo;
 		this.startDate = startDate;

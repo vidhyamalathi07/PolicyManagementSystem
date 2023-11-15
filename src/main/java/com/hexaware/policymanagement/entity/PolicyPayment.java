@@ -4,26 +4,22 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="Policy_payments")
 public class PolicyPayment implements Serializable
 {
+	
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long txnId;
 	private LocalDate paymentDate;
-	private long amount;
+	private double amount;
 	private String bank;
 	private String paymentStatus;
-	private long fine;
+	private double fine;
 	
 	@OneToOne
 	@JoinColumn(name = "policyNo")
@@ -45,11 +41,11 @@ public class PolicyPayment implements Serializable
 		this.paymentDate = paymentDate;
 	}
 
-	public long getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(long amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 
@@ -69,11 +65,11 @@ public class PolicyPayment implements Serializable
 		this.paymentStatus = paymentStatus;
 	}
 
-	public long getFine() {
+	public double getFine() {
 		return fine;
 	}
 
-	public void setFine(long fine) {
+	public void setFine(double fine) {
 		this.fine = fine;
 	}
 
@@ -91,7 +87,7 @@ public class PolicyPayment implements Serializable
 				+ bank + ", paymentStatus=" + paymentStatus + ", fine=" + fine + ", userPolicy=" + userPolicy + "]";
 	}
 
-	public PolicyPayment(long txnId, LocalDate paymentDate, long amount, String bank, String paymentStatus, long fine,
+	public PolicyPayment(long txnId, LocalDate paymentDate, double amount, String bank, String paymentStatus, double fine,
 			UserPolicy userPolicy) {
 		super();
 		this.txnId = txnId;
@@ -105,7 +101,6 @@ public class PolicyPayment implements Serializable
 
 	public PolicyPayment() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	

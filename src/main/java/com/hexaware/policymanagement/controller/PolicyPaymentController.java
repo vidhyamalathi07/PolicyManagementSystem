@@ -17,7 +17,7 @@ import com.hexaware.policymanagement.entity.PolicyPayment;
 import com.hexaware.policymanagement.services.IPolicyPaymentServices;
 
 @RestController
-@RequestMapping("/api/policy-payment")
+@RequestMapping("/api/v1/policy-payment")
 public class PolicyPaymentController 
 {
 private final IPolicyPaymentServices service;

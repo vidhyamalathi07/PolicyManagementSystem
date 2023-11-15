@@ -4,23 +4,28 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 
 @Entity
-@Table(name="User_policy")
 public class UserPolicy implements Serializable
 {
+	
+	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long policyNo;
 	private LocalDate startDate;
+	private String policyName;
+	private String policyType;
+	private String company;
+	private LocalDate endDate;
+	private String paymentInterval;
+	private double amount;
+	private int tenure;
+	private double maturityamount;
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
@@ -32,15 +37,6 @@ public class UserPolicy implements Serializable
 	
 	@OneToOne(mappedBy = "userPolicy")
 	private PolicyPayment policyPayment;
-
-	private String policyName;
-	private String policyType;
-	private String company;
-	private LocalDate endDate;
-	private String paymentInterval;
-	private long amount;
-	private int tenure;
-	private long maturityamount;
 	
 	
 	
@@ -105,10 +101,10 @@ public class UserPolicy implements Serializable
 	public void setPaymentInterval(String paymentInterval) {
 		this.paymentInterval = paymentInterval;
 	}
-	public long getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(long amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 	public int getTenure() {
@@ -117,17 +113,17 @@ public class UserPolicy implements Serializable
 	public void setTenure(int tenure) {
 		this.tenure = tenure;
 	}
-	public long getMaturityamount() {
+	public double getMaturityamount() {
 		return maturityamount;
 	}
-	public void setMaturityamount(long maturityamount) {
+	public void setMaturityamount(double maturityamount) {
 		this.maturityamount = maturityamount;
 	}
 	
 	
 	public UserPolicy(long policyNo, LocalDate startDate, User user, Policy policy, PolicyPayment policyPayment,
 			 String policyName, String policyType, String company, LocalDate endDate,
-			String paymentInterval, long amount, int tenure, long maturityamount) {
+			String paymentInterval, double amount, int tenure, double maturityamount) {
 		super();
 		this.policyNo = policyNo;
 		this.startDate = startDate;
@@ -147,7 +143,6 @@ public class UserPolicy implements Serializable
 	
 	public UserPolicy() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String toString() {
@@ -157,32 +152,4 @@ public class UserPolicy implements Serializable
 				+ amount + ", tenure=" + tenure + ", maturityamount=" + maturityamount + "]";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-	
-
 }

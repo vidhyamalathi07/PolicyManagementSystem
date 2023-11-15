@@ -12,9 +12,9 @@ public class PolicyDTO
 	private String policyDescription;
 	private String policyType;
 	private String company;
-	private long amount;
+	private double amount;
 	private int tenure;
-	private long maturityAmount;
+	private double maturityAmount;
 	
 	private Set<UserPolicy> policies = new HashSet<UserPolicy>();
 
@@ -58,7 +58,7 @@ public class PolicyDTO
 		this.company = company;
 	}
 
-	public long getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 
@@ -74,11 +74,11 @@ public class PolicyDTO
 		this.tenure = tenure;
 	}
 
-	public long getMaturityAmount() {
+	public double getMaturityAmount() {
 		return maturityAmount;
 	}
 
-	public void setMaturityAmount(long maturityAmount) {
+	public void setMaturityAmount(double maturityAmount) {
 		this.maturityAmount = maturityAmount;
 	}
 
@@ -91,7 +91,7 @@ public class PolicyDTO
 	}
 
 	public PolicyDTO(long policyId, String policyName, String policyDescription, String policyType, String company,
-			long amount, int tenure, long maturityAmount, Set<UserPolicy> policies) {
+			double amount, int tenure, double maturityAmount, Set<UserPolicy> policies) {
 		super();
 		this.policyId = policyId;
 		this.policyName = policyName;
@@ -106,7 +106,6 @@ public class PolicyDTO
 
 	public PolicyDTO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

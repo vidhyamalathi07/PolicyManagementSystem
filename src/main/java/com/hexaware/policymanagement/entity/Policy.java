@@ -6,30 +6,45 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
-@Table(name="Policy_details")
 public class Policy implements Serializable
 {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long policyId;
+	@NotNull
+	@NotBlank
 	private String policyName;
+	@NotNull
+	@NotBlank
 	private String policyDescription;
+	@NotNull
+	@NotBlank
 	private String policyType;
+	@NotNull
+	@NotBlank
 	private String company;
-	private long amount;
+	
+	@Pattern(regexp="^[1-9][0-9]{6}*$")
+	private double amount;
+
+	@Pattern(regexp="^[0-9][0-9]*&")
 	private int tenure;
-	private long maturityAmount;
+	
+	@Pattern(regexp="[1-9][0-9]{10}*$")
+	private double maturityAmount;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "policy")
-	private Set<UserPolicy> policies = new HashSet<UserPolicy>();
+	private Set<UserPolicy> policies = new HashSet<>();
 	
 	
 	public long getPolicyId() {
@@ -62,10 +77,10 @@ public class Policy implements Serializable
 	public void setCompany(String company) {
 		this.company = company;
 	}
-	public long getAmount() {
+	public double getAmount() {
 		return amount;
 	}
-	public void setAmount(long amount) {
+	public void setAmount(double amount) {
 		this.amount = amount;
 	}
 	public int getTenure() {
@@ -74,10 +89,10 @@ public class Policy implements Serializable
 	public void setTenure(int tenure) {
 		this.tenure = tenure;
 	}
-	public long getMaturityAmount() {
+	public double getMaturityAmount() {
 		return maturityAmount;
 	}
-	public void setMaturityAmount(long maturityAmount) {
+	public void setMaturityAmount(double maturityAmount) {
 		this.maturityAmount = maturityAmount;
 	}
 	
@@ -89,7 +104,7 @@ public class Policy implements Serializable
 		this.policies = policies;
 	}
 	public Policy(long policyId, String policyName, String policyDescription, String policyType, String company,
-			 long amount, int tenure, long maturityAmount, Set<UserPolicy> policies) {
+			 double amount, int tenure, double maturityAmount, Set<UserPolicy> policies) {
 		super();
 		this.policyId = policyId;
 		this.policyName = policyName;
@@ -112,7 +127,6 @@ public class Policy implements Serializable
 	
 	public Policy() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public void addUserPolicy(UserPolicy policy)

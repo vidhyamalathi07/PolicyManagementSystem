@@ -17,9 +17,10 @@ import com.hexaware.policymanagement.entity.Address;
 import com.hexaware.policymanagement.services.IAddressServices;
 
 @RestController
-@RequestMapping("/api/addresses")
+@RequestMapping("/api/v1/addresses")
 public class AddressController 
 {
+	
 	private final IAddressServices service;
 	
 	@Autowired

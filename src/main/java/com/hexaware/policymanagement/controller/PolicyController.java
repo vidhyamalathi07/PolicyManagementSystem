@@ -19,11 +19,11 @@ import com.hexaware.policymanagement.services.IPolicyServices;
 
 
 @RestController
-@RequestMapping("/api/policies")
+@RequestMapping("/api/v1/policies")
 public class PolicyController 
 {
-
-private final IPolicyServices service;
+	
+	private final IPolicyServices service;
 	
 	@Autowired
 	public PolicyController(IPolicyServices service) {

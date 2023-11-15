@@ -17,7 +17,7 @@ import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.services.IUserServices;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 public class UserController 
 {
 private final IUserServices service;
