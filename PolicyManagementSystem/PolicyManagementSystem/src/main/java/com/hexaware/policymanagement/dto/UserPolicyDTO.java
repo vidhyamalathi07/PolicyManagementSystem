@@ -22,6 +22,7 @@ public class UserPolicyDTO
 	private double amount;
 	private int tenure;
 	private double maturityAmount;
+	private double interest;
 	
 	
 	
@@ -103,11 +104,16 @@ public class UserPolicyDTO
 	public void setMaturityamount(double maturityamount) {
 		this.maturityAmount = maturityamount;
 	}
-	
-	
+
+	public double getInterest() {
+		return interest;
+	}
+	public void setInterest(double interest) {
+		this.interest = interest;
+	}
 	public UserPolicyDTO(long policyNo, LocalDate startDate, User user, Policy policy, PolicyPayment policyPayment,
 			 String policyName, String policyType, String company, LocalDate endDate,
-			String paymentInterval, double amount, int tenure, double maturityAmount) {
+			String paymentInterval, double amount, int tenure, double maturityAmount, double interest) {
 		super();
 		this.policyNo = policyNo;
 		this.startDate = startDate;
@@ -122,6 +128,7 @@ public class UserPolicyDTO
 		this.amount = amount;
 		this.tenure = tenure;
 		this.maturityAmount = maturityAmount;
+		this.interest = interest;
 	}
 	
 	
@@ -133,9 +140,9 @@ public class UserPolicyDTO
 		return "UserPolicyDTO [policyNo=" + policyNo + ", startDate=" + startDate + ", user=" + user + ", policy="
 				+ policy + ", policyPayment=" + policyPayment + ", policyName=" + policyName + ", policyType="
 				+ policyType + ", company=" + company + ", endDate=" + endDate + ", paymentInterval=" + paymentInterval
-				+ ", amount=" + amount + ", tenure=" + tenure + ", maturityAmount=" + maturityAmount + "]";
+				+ ", amount=" + amount + ", tenure=" + tenure + ", maturityAmount=" + maturityAmount + ", interest="
+				+ interest + "]";
 	}
-	
 	
 	
 	

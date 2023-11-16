@@ -12,9 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -23,33 +24,47 @@ public class User implements Serializable
 	private static final long serialVersionUID = 1L;
 		@Id
 		private long userId;
-		@NotNull
-		@NotBlank
-		@Pattern(regexp="[A-Z][a-z]{3,10}")
-		private String fname;
-		@NotNull
-		@NotBlank
-		@Pattern(regexp="[A-Z][a-z]{3,10}")
-		private String lname;
-		@NotNull
-		@NotBlank
-		@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$")
-		private String password;
-		@Email
-		private String email;
+		@NotEmpty(message = "First name cannot be empty")
+	    @Size(max = 50, message = "First name cannot exceed 50 characters")
+	    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "First name can only contain letters and spaces")
+	    private String fname;
 
-		@Pattern(regexp="^[6-9]{1}[0-9]{9}$")
-		private String mobNo;
-		@NotNull
-		@NotBlank
-		private String userType;
-		@NotNull
-		@NotBlank
-		@Pattern(regexp="[A-Z]")
-		private String userCategory;
-		
-		@Pattern(regexp="^\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])$")
-		private LocalDate dob;
+	    @NotEmpty(message = "Last name cannot be empty")
+	    @Size(max = 50, message = "Last name cannot exceed 50 characters")
+	    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "Last name can only contain letters and spaces")
+	    private String lname;
+
+	    @NotEmpty(message = "Password cannot be empty")
+	    @Size(min = 8, message = "Password must be at least 8 characters")
+	    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
+	            message = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character")
+	    private String password;
+
+	    @Email(message = "Invalid email format")
+	    private String email;
+
+	    @Pattern(regexp = "^[6789]\\d{9}$", message = "Invalid Indian mobile number")
+	    private String mobNo;
+
+	    @Pattern(regexp = "^(Admin|User)$", message = "User type must be 'Admin' or 'User'")
+	    private String userType;
+	    
+	    @NotEmpty(message = "Employer type cannot be empty")
+	    @Pattern(regexp = "^(Salaried|Optional)$", message = "Invalid employer type")
+	    private String employerType;
+
+	    @NotEmpty(message = "Employer name cannot be empty if Salaried or Optional")
+	    @Size(max = 100, message = "Employer name cannot exceed 100 characters")
+	    private String employerName;
+
+	    @Pattern(regexp = "^(A|B|C|D|E)$", message = "Invalid user category")
+	    private String userCategory;
+
+	    @Past(message = "Date of birth must be in the past")
+	    private LocalDate dob;
+	    
+	    @Pattern(regexp = "^[A-Z]{5}[0-9]{4}[A-Z]$", message = "Invalid PAN number")
+	    private String panNumber;
 		
 		@OneToOne(cascade = CascadeType.ALL)
 		@JoinColumn(name = "addressId")
@@ -122,14 +137,33 @@ public class User implements Serializable
 			this.dob = dob;
 		}
 		
+		public String getPanNumber() {
+			return panNumber;
+		}
+		public void setPanNumber(String panNumber) {
+			this.panNumber = panNumber;
+		}
 		public Set<UserPolicy> getUsers() {
 			return users;
 		}
 		public void setUsers(Set<UserPolicy> users) {
 			this.users = users;
 		}
-		public User(long userId, String fname, String lname, String password, String email, String mobNo, String userType,
-				String userCategory, Address address, LocalDate dob, Set<UserPolicy> users) {
+		
+		public String getEmployerType() {
+			return employerType;
+		}
+		public void setEmployerType(String employerType) {
+			this.employerType = employerType;
+		}
+		public String getEmployerName() {
+			return employerName;
+		}
+		public void setEmployerName(String employerName) {
+			this.employerName = employerName;
+		}
+		public User(long userId, String fname, String lname, String password, String email, String mobNo, String userType, String employerType, String employerName,
+				String userCategory, Address address, LocalDate dob, String panNumber, Set<UserPolicy> users) {
 			super();
 			this.userId = userId;
 			this.fname = fname;
@@ -138,20 +172,23 @@ public class User implements Serializable
 			this.email = email;
 			this.mobNo = mobNo;
 			this.userType = userType;
+			this.employerType = employerType;
+			this.employerName = employerName;
 			this.userCategory = userCategory;
 			this.address = address;
 			this.dob = dob;
+			this.panNumber = panNumber;
 			this.users = users;
 		}
+		
+		
 		@Override
 		public String toString() {
 			return "User [userId=" + userId + ", fname=" + fname + ", lname=" + lname + ", password=" + password
-					+ ", email=" + email + ", mobNo=" + mobNo + ", userType=" + userType + ", userCategory="
-					+ userCategory + ", address=" + address + ", dob=" + dob + "]";
+					+ ", email=" + email + ", mobNo=" + mobNo + ", userType=" + userType + ", employerType="
+					+ employerType + ", employerName=" + employerName + ", userCategory=" + userCategory + ", dob="
+					+ dob + ", panNumber=" + panNumber + ", address=" + address + ", users=" + users + "]";
 		}
-		
-		
-		
 		public User() {
 			super();
 		}

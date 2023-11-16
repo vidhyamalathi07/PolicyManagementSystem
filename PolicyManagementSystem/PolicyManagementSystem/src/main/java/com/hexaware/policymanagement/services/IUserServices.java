@@ -14,7 +14,7 @@ public interface IUserServices
     public User getUserByEmail(String email);
     public List<User> getUserByUserType(String userType);
     public List<User> getUserByUserCategory(String userCategory);
-    public User getUserByMobNo(String MobNo);
+    public User getUserByMobNo(String mobNo);
 
 
 

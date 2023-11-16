@@ -5,6 +5,10 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -15,10 +19,21 @@ public class Address implements Serializable
 	
 	@Id
 	private long addressId;
-	private String city;
-	private String addressLine;
-	private String state;
-	private int pincode;
+	@NotEmpty(message = "City cannot be empty")
+    @Size(max = 50, message = "City cannot exceed 50 characters")
+    private String city;
+
+    @NotEmpty(message = "Address line cannot be empty")
+    @Size(max = 255, message = "Address line cannot exceed 255 characters")
+    private String addressLine;
+
+    @NotEmpty(message = "State cannot be empty")
+    @Size(max = 50, message = "State cannot exceed 50 characters")
+    private String state;
+
+    @Positive(message = "Pincode must be a positive number")
+    @Digits(integer = 6, fraction = 0, message = "Invalid pincode format")
+    private int pincode;
 	
 	@OneToOne(mappedBy = "address")
 	private User user;
@@ -106,7 +121,6 @@ public class Address implements Serializable
 
 	public Address() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 

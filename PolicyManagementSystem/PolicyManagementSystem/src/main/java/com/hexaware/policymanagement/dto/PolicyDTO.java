@@ -15,6 +15,7 @@ public class PolicyDTO
 	private double amount;
 	private int tenure;
 	private double maturityAmount;
+	private double interest;
 	
 	private Set<UserPolicy> policies = new HashSet<>();
 
@@ -90,8 +91,16 @@ public class PolicyDTO
 		this.policies = policies;
 	}
 
+	public double getInterest() {
+		return interest;
+	}
+
+	public void setInterest(double interest) {
+		this.interest = interest;
+	}
+
 	public PolicyDTO(long policyId, String policyName, String policyDescription, String policyType, String company,
-			double amount, int tenure, double maturityAmount, Set<UserPolicy> policies) {
+			double amount, int tenure, double maturityAmount,double interest, Set<UserPolicy> policies) {
 		super();
 		this.policyId = policyId;
 		this.policyName = policyName;
@@ -101,6 +110,7 @@ public class PolicyDTO
 		this.amount = amount;
 		this.tenure = tenure;
 		this.maturityAmount = maturityAmount;
+		this.interest = interest;
 		this.policies = policies;
 	}
 
@@ -112,8 +122,11 @@ public class PolicyDTO
 	public String toString() {
 		return "PolicyDTO [policyId=" + policyId + ", policyName=" + policyName + ", policyDescription="
 				+ policyDescription + ", policyType=" + policyType + ", company=" + company + ", amount=" + amount
-				+ ", tenure=" + tenure + ", maturityAmount=" + maturityAmount + ", policies=" + policies + "]";
+				+ ", tenure=" + tenure + ", maturityAmount=" + maturityAmount + ", interest=" + interest + ", policies="
+				+ policies + "]";
 	}
+
+	
 	
 	
 	

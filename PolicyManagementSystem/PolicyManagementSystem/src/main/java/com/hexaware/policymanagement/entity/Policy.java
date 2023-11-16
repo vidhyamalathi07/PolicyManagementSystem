@@ -8,9 +8,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -21,27 +23,32 @@ public class Policy implements Serializable
 	
 	@Id
 	private long policyId;
-	@NotNull
-	@NotBlank
-	private String policyName;
-	@NotNull
-	@NotBlank
-	private String policyDescription;
-	@NotNull
-	@NotBlank
-	private String policyType;
-	@NotNull
-	@NotBlank
-	private String company;
-	
-	@Pattern(regexp="^[1-9][0-9]{6}*$")
-	private double amount;
 
-	@Pattern(regexp="^[0-9][0-9]*&")
-	private int tenure;
-	
-	@Pattern(regexp="[1-9][0-9]{10}*$")
-	private double maturityAmount;
+    @NotEmpty(message = "Policy name cannot be empty")
+    @Size(max = 100, message = "Policy name cannot exceed 100 characters")
+    private String policyName;
+
+    @Size(max = 255, message = "Policy description cannot exceed 255 characters")
+    private String policyDescription;
+
+    @NotEmpty(message = "Policy type cannot be empty")
+    private String policyType;
+
+    @NotEmpty(message = "Company name cannot be empty")
+    @Size(max = 100, message = "Company name cannot exceed 100 characters")
+    private String company;
+
+    @Positive(message = "Amount must be a positive number")
+    private double amount;
+
+    @Positive(message = "Tenure must be a positive number")
+    private int tenure;
+
+    @PositiveOrZero(message = "Maturity amount must be a positive or zero number")
+    private double maturityAmount;
+    
+    @PositiveOrZero(message = "Interest must be a positive or zero number")
+    private double interest;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "policy")
 	private Set<UserPolicy> policies = new HashSet<>();
@@ -96,7 +103,12 @@ public class Policy implements Serializable
 		this.maturityAmount = maturityAmount;
 	}
 	
-	
+	public double getInterest() {
+		return interest;
+	}
+	public void setInterest(double interest) {
+		this.interest = interest;
+	}
 	public Set<UserPolicy> getPolicies() {
 		return policies;
 	}
@@ -104,7 +116,7 @@ public class Policy implements Serializable
 		this.policies = policies;
 	}
 	public Policy(long policyId, String policyName, String policyDescription, String policyType, String company,
-			 double amount, int tenure, double maturityAmount, Set<UserPolicy> policies) {
+			 double amount, int tenure, double maturityAmount,double interest, Set<UserPolicy> policies) {
 		super();
 		this.policyId = policyId;
 		this.policyName = policyName;
@@ -114,17 +126,19 @@ public class Policy implements Serializable
 		this.amount = amount;
 		this.tenure = tenure;
 		this.maturityAmount = maturityAmount;
+		this.interest = interest;
 		this.policies = policies;
 	}
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Policy [policyId=" + policyId + ", policyName=" + policyName + ", policyDescription="
 				+ policyDescription + ", policyType=" + policyType + ", company=" + company + ", amount=" + amount
-				+ ", tenure=" + tenure + ", maturityAmount=" + maturityAmount + "]";
+				+ ", tenure=" + tenure + ", maturityAmount=" + maturityAmount + ", interest=" + interest + ", policies="
+				+ policies + "]";
 	}
-	
-	
-	
 	public Policy() {
 		super();
 	}

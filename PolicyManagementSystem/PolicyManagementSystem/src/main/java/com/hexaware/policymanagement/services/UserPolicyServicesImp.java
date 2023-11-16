@@ -29,6 +29,7 @@ public class UserPolicyServicesImp implements IUserPolicyServices {
 		userpolicy.setTenure(userpolicyDTO.getTenure());
 		userpolicy.setPolicy(userpolicyDTO.getPolicy());
 		userpolicy.setUser(userpolicyDTO.getUser());
+		userpolicy.setInterest(userpolicyDTO.getInterest());
 		
 		return userpolicyrepo.save(userpolicy);
 	}
@@ -48,6 +49,8 @@ public class UserPolicyServicesImp implements IUserPolicyServices {
 		userpolicy.setTenure(userpolicyDTO.getTenure());
 		userpolicy.setPolicy(userpolicyDTO.getPolicy());
 		userpolicy.setUser(userpolicyDTO.getUser());
+		userpolicy.setInterest(userpolicyDTO.getInterest());
+
 		
 		return userpolicyrepo.save(userpolicy);
 

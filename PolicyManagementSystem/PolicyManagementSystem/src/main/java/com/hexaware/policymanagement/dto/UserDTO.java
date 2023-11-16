@@ -18,6 +18,9 @@ public class UserDTO
 	private String email;
 	private String mobNo;
 	private String userType;
+	private String employerType;
+	private String employerName;
+	private String panNumber;
 	private String userCategory;
 	private LocalDate dob;
 	
@@ -112,9 +115,37 @@ public class UserDTO
 	public void setUsers(Set<UserPolicy> users) {
 		this.users = users;
 	}
+	
+
+	public String getEmployerType() {
+		return employerType;
+	}
+
+	public void setEmployerType(String employerType) {
+		this.employerType = employerType;
+	}
+
+	public String getEmployerName() {
+		return employerName;
+	}
+
+	public void setEmployerName(String employerName) {
+		this.employerName = employerName;
+	}
+
+	public String getPanNumber() {
+		return panNumber;
+	}
+
+	public void setPanNumber(String panNumber) {
+		this.panNumber = panNumber;
+	}
+
+	
 
 	public UserDTO(long userId, String fname, String lname, String password, String email, String mobNo,
-			String userType, String userCategory, LocalDate dob, Address address, Set<UserPolicy> users) {
+			String userType, String employerType, String employerName, String panNumber, String userCategory,
+			LocalDate dob, Address address, Set<UserPolicy> users) {
 		super();
 		this.userId = userId;
 		this.fname = fname;
@@ -123,6 +154,9 @@ public class UserDTO
 		this.email = email;
 		this.mobNo = mobNo;
 		this.userType = userType;
+		this.employerType = employerType;
+		this.employerName = employerName;
+		this.panNumber = panNumber;
 		this.userCategory = userCategory;
 		this.dob = dob;
 		this.address = address;

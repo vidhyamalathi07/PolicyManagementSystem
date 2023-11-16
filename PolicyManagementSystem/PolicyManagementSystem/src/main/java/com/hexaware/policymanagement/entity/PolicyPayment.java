@@ -7,6 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 @Entity
 public class PolicyPayment implements Serializable
@@ -15,11 +22,23 @@ public class PolicyPayment implements Serializable
 	private static final long serialVersionUID = 1L;
 	@Id
 	private long txnId;
-	private LocalDate paymentDate;
-	private double amount;
-	private String bank;
-	private String paymentStatus;
-	private double fine;
+	
+	@NotNull(message = "Payment date cannot be null")
+    @PastOrPresent(message = "Payment date must be in the present or past")
+    private LocalDate paymentDate;
+
+    @Positive(message = "Amount must be a positive number")
+    private double amount;
+
+    @NotEmpty(message = "Bank name cannot be empty")
+    @Size(max = 100, message = "Bank name cannot exceed 100 characters")
+    private String bank;
+
+    @Pattern(regexp = "^(Pending|Completed)$", message = "Invalid payment status")
+    private String paymentStatus;
+
+    @PositiveOrZero(message = "Fine must be a positive or zero number")
+    private double fine;
 	
 	@OneToOne
 	@JoinColumn(name = "policyNo")

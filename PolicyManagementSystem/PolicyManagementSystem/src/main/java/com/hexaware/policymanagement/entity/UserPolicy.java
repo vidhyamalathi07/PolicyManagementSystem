@@ -8,6 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -17,15 +25,42 @@ public class UserPolicy implements Serializable
 	private static final long serialVersionUID = 1L;
 	@Id
 	private long policyNo;
-	private LocalDate startDate;
-	private String policyName;
-	private String policyType;
-	private String company;
-	private LocalDate endDate;
-	private String paymentInterval;
-	private double amount;
-	private int tenure;
-	private double maturityAmount;
+	 
+	@NotNull(message = "Start date cannot be null")
+    @FutureOrPresent(message = "Start date must be in the present or future")
+    private LocalDate startDate;
+
+    @NotEmpty(message = "Policy name cannot be empty")
+    @Size(max = 100, message = "Policy name cannot exceed 100 characters")
+    private String policyName;
+
+    @NotEmpty(message = "Policy type cannot be empty")
+    private String policyType;
+
+    @NotEmpty(message = "Company name cannot be empty")
+    @Size(max = 100, message = "Company name cannot exceed 100 characters")
+    private String company;
+
+    @NotNull(message = "End date cannot be null")
+    @Future(message = "End date must be in the future")
+    private LocalDate endDate;
+
+    @Pattern(regexp = "^(Monthly|Quarterly|Annually)$", message = "Invalid payment interval")
+    private String paymentInterval;
+
+    @Positive(message = "Amount must be a positive number")
+    private double amount;
+
+    @Positive(message = "Tenure must be a positive number")
+    private int tenure;
+
+    @PositiveOrZero(message = "Maturity amount must be a positive or zero number")
+    private double maturityAmount;
+    
+    @PositiveOrZero(message = "Interest must be a positive or zero number")
+    private double interest;
+    
+     
 	
 	@ManyToOne
 	@JoinColumn(name = "userId")
@@ -120,10 +155,15 @@ public class UserPolicy implements Serializable
 		this.maturityAmount = maturityAmount;
 	}
 	
-	
+	public double getInterest() {
+		return interest;
+	}
+	public void setInterest(double interest) {
+		this.interest = interest;
+	}
 	public UserPolicy(long policyNo, LocalDate startDate, User user, Policy policy, PolicyPayment policyPayment,
 			 String policyName, String policyType, String company, LocalDate endDate,
-			String paymentInterval, double amount, int tenure, double maturityAmount) {
+			String paymentInterval, double amount, int tenure, double maturityAmount,double interest) {
 		super();
 		this.policyNo = policyNo;
 		this.startDate = startDate;
@@ -138,6 +178,7 @@ public class UserPolicy implements Serializable
 		this.amount = amount;
 		this.tenure = tenure;
 		this.maturityAmount = maturityAmount;
+		this.interest = interest;
 	}
 	
 	
@@ -146,10 +187,12 @@ public class UserPolicy implements Serializable
 	}
 	@Override
 	public String toString() {
-		return "UserPolicy [policyNo=" + policyNo + ", startDate=" + startDate + ", user=" + user + ", policy=" + policy
-				+ ", policyPayment=" + policyPayment + ", policyName=" + policyName + ", policyType=" + policyType
-				+ ", company=" + company + ", endDate=" + endDate + ", paymentInterval=" + paymentInterval + ", amount="
-				+ amount + ", tenure=" + tenure + ", maturityAmount=" + maturityAmount + "]";
+		return "UserPolicy [policyNo=" + policyNo + ", startDate=" + startDate + ", policyName=" + policyName
+				+ ", policyType=" + policyType + ", company=" + company + ", endDate=" + endDate + ", paymentInterval="
+				+ paymentInterval + ", amount=" + amount + ", tenure=" + tenure + ", maturityAmount=" + maturityAmount
+				+ ", interest=" + interest + ", user=" + user + ", policy=" + policy + ", policyPayment="
+				+ policyPayment + "]";
 	}
+	
 	
 }

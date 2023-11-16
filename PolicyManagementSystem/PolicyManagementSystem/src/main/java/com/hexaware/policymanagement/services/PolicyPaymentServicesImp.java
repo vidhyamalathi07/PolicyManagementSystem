@@ -2,67 +2,174 @@ package com.hexaware.policymanagement.services;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hexaware.policymanagement.dto.PolicyPaymentDTO;
 import com.hexaware.policymanagement.entity.PolicyPayment;
+import com.hexaware.policymanagement.exception.TransactionNotFoundException;
 import com.hexaware.policymanagement.repository.PolicyPaymentRepository;
 
 @Service
 public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
-	
-	@Autowired
-	PolicyPaymentRepository policypayrepo;
 
-	@Override
-	public PolicyPayment createPolicyPayment(PolicyPaymentDTO policyPaymentDTO) {
-		PolicyPayment policyPayment = new PolicyPayment();
-		policyPayment.setAmount(policyPaymentDTO.getAmount());
-		policyPayment.setBank(policyPaymentDTO.getBank());
-		policyPayment.setFine(policyPaymentDTO.getFine());
-		policyPayment.setPaymentDate(policyPaymentDTO.getPaymentDate());
-		policyPayment.setPaymentStatus(policyPaymentDTO.getPaymentStatus());
-		policyPayment.setUserPolicy(policyPaymentDTO.getUserPolicy());
-		
-		return policypayrepo.save(policyPayment);
-	}
+    private static final Logger logger = LoggerFactory.getLogger(PolicyPaymentServicesImp.class);
 
-	@Override
-	public PolicyPayment updatePolicyPayment(PolicyPaymentDTO policyPaymentDTO) {
-		PolicyPayment policyPayment = new PolicyPayment();
-		policyPayment.setTxnId(policyPaymentDTO.getTxnId());
-		policyPayment.setAmount(policyPaymentDTO.getAmount());
-		policyPayment.setBank(policyPaymentDTO.getBank());
-		policyPayment.setFine(policyPaymentDTO.getFine());
-		policyPayment.setPaymentDate(policyPaymentDTO.getPaymentDate());
-		policyPayment.setPaymentStatus(policyPaymentDTO.getPaymentStatus());
-		policyPayment.setUserPolicy(policyPaymentDTO.getUserPolicy());
-		
-		return policypayrepo.save(policyPayment);
-	}
+    @Autowired
+    PolicyPaymentRepository policypayrepo;
 
-	@Override
-	public void deletePolicyPaymentByTxnId(long txnId) {
-		policypayrepo.deleteById(txnId);
-	}
+    @Override
+    public PolicyPayment createPolicyPayment(PolicyPaymentDTO policyPaymentDTO) 
+    {
+        try 
+        {
+            PolicyPayment policyPayment = new PolicyPayment();
+            policyPayment.setAmount(policyPaymentDTO.getAmount());
+            policyPayment.setBank(policyPaymentDTO.getBank());
+            policyPayment.setFine(policyPaymentDTO.getFine());
+            policyPayment.setPaymentDate(policyPaymentDTO.getPaymentDate());
+            policyPayment.setPaymentStatus(policyPaymentDTO.getPaymentStatus());
+            policyPayment.setUserPolicy(policyPaymentDTO.getUserPolicy());
 
-	@Override
-	public PolicyPayment getPolicyPaymentByTxnId(long txnId) {
-		
-		return policypayrepo.findById(txnId).orElse(new PolicyPayment());
-	}
+            PolicyPayment createdPolicyPayment = policypayrepo.save(policyPayment);
 
-	@Override
-	public PolicyPayment getPolicyPaymentByPolicyNo(PolicyPayment PolicyNo) {
-		
-		return policypayrepo.findByPolicyNo(PolicyNo);
-	}
+            logger.info("Policy Payment created successfully: {}", createdPolicyPayment);
 
-	@Override
-	public List<PolicyPayment> getAllPolicyPayment() {
-		return policypayrepo.findAll();
-	}
+            return createdPolicyPayment;
+        } 
+        catch (Exception e) 
+        {
+            logger.error("Error creating Policy Payment", e);
+            throw new RuntimeException("Error creating Policy Payment", e);
+        }
+    }
 
-	
+    @Override
+    public PolicyPayment updatePolicyPayment(PolicyPaymentDTO policyPaymentDTO) {
+        try 
+        {
+            if (!policypayrepo.existsById(policyPaymentDTO.getTxnId())) 
+            {
+                throw new TransactionNotFoundException("Transaction not found with TxnId: " + policyPaymentDTO.getTxnId());
+            }
+
+            PolicyPayment policyPayment = new PolicyPayment();
+            policyPayment.setTxnId(policyPaymentDTO.getTxnId());
+            policyPayment.setAmount(policyPaymentDTO.getAmount());
+            policyPayment.setBank(policyPaymentDTO.getBank());
+            policyPayment.setFine(policyPaymentDTO.getFine());
+            policyPayment.setPaymentDate(policyPaymentDTO.getPaymentDate());
+            policyPayment.setPaymentStatus(policyPaymentDTO.getPaymentStatus());
+            policyPayment.setUserPolicy(policyPaymentDTO.getUserPolicy());
+
+            PolicyPayment updatedPolicyPayment = policypayrepo.save(policyPayment);
+
+            logger.info("Policy Payment updated successfully: {}", updatedPolicyPayment);
+
+            return updatedPolicyPayment;
+        } 
+        catch (TransactionNotFoundException e) 
+        {
+            logger.error("Transaction not found", e);
+            throw e;  
+        }
+        catch (Exception e) 
+        {
+            logger.error("Error updating Policy Payment", e);
+            throw new RuntimeException("Error updating Policy Payment", e);
+        }
+    }
+
+    @Override
+    public void deletePolicyPaymentByTxnId(long txnId) 
+    {
+        try 
+        {
+            if (!policypayrepo.existsById(txnId)) 
+            {
+                throw new TransactionNotFoundException("Transaction not found with TxnId: " + txnId);
+            }
+
+            policypayrepo.deleteById(txnId);
+
+            logger.info("Policy Payment deleted successfully with TxnId: {}", txnId);
+        } 
+        	catch (TransactionNotFoundException e) 
+        {
+            logger.error("Transaction not found", e);
+            throw e;  
+        } 
+        	catch (Exception e) {
+            logger.error("Error deleting Policy Payment", e);
+            throw new RuntimeException("Error deleting Policy Payment", e);
+        }
+    }
+
+    @Override
+    public PolicyPayment getPolicyPaymentByTxnId(long txnId) 
+    {
+        try 
+        {
+            PolicyPayment policyPayment = policypayrepo.findById(txnId)
+                    .orElseThrow(() -> new TransactionNotFoundException("Transaction not found with TxnId: " + txnId));
+
+            logger.info("Retrieved Policy Payment by TxnId successfully: {}", policyPayment);
+
+            return policyPayment;
+        } 
+        catch (TransactionNotFoundException e) 
+        {
+            logger.error("Transaction not found", e);
+            throw e;  
+        } 
+        catch (Exception e) 
+        {
+            logger.error("Error getting Policy Payment by TxnId", e);
+            throw new RuntimeException("Error getting Policy Payment by TxnId", e);
+        }
+    }
+
+    @Override
+    public PolicyPayment getPolicyPaymentByPolicyNo(PolicyPayment PolicyNo) 
+    {
+        try 
+        {
+            PolicyPayment policyPayment = policypayrepo.findByPolicyNo(PolicyNo)
+                    .orElseThrow(() -> new TransactionNotFoundException("Transaction not found with PolicyNo: " + PolicyNo));
+
+            logger.info("Retrieved Policy Payment by PolicyNo successfully: {}", policyPayment);
+
+            return policyPayment;
+        } 
+        catch (TransactionNotFoundException e) 
+        {
+            logger.error("Transaction not found", e);
+            throw e;  
+        } 
+        catch (Exception e) 
+        {
+            logger.error("Error getting Policy Payment by PolicyNo", e);
+            throw new RuntimeException("Error getting Policy Payment by PolicyNo", e);
+        }
+    }
+
+    @Override
+    public List<PolicyPayment> getAllPolicyPayment() 
+    {
+        try 
+        {
+            List<PolicyPayment> policyPayments = policypayrepo.findAll();
+
+            logger.info("Retrieved all Policy Payments successfully: {}", policyPayments);
+
+            return policyPayments;
+        } 
+        catch (Exception e) 
+        {
+            logger.error("Error getting all Policy Payments", e);
+            throw new RuntimeException("Error getting all Policy Payments", e);
+        }
+    }
 }
