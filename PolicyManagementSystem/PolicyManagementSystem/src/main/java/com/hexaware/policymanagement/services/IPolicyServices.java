@@ -12,8 +12,8 @@ public interface IPolicyServices
 	public void deleteByPolicyId(long policyId);
     public List<Policy> getPolicyByPolicyType(String policyType);
     public List<Policy> getPolicyByCompany(String company);
-    public List<Policy> getByPremiumLessThan(double premium);
-    public List<Policy> getByPremiumGreaterThan(double premium);
+    public List<Policy> getByAmountLessThan(double amount);
+    public List<Policy> getByAmountGreaterThan(double amount);
 
 	
 	public List<Policy> getAllPolicy();

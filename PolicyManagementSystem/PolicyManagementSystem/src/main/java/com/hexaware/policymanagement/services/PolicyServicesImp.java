@@ -33,6 +33,7 @@ public class PolicyServicesImp implements IPolicyServices {
             policy.setMaturityAmount(policyDTO.getMaturityAmount());
             policy.setPolicyDescription(policyDTO.getPolicyDescription());
             policy.setTenure(policyDTO.getTenure());
+            policy.setInterest(policyDTO.getInterest());
 
             Policy createdPolicy = policyrepo.save(policy);
 
@@ -65,6 +66,8 @@ public class PolicyServicesImp implements IPolicyServices {
             policy.setMaturityAmount(policyDTO.getMaturityAmount());
             policy.setPolicyDescription(policyDTO.getPolicyDescription());
             policy.setTenure(policyDTO.getTenure());
+            policy.setInterest(policyDTO.getInterest());
+
 
             Policy updatedPolicy = policyrepo.save(policy);
 
@@ -72,11 +75,7 @@ public class PolicyServicesImp implements IPolicyServices {
 
             return updatedPolicy;
         } 
-        catch (PolicyNotFoundException e) 
-        {
-            logger.error("Error updating Policy", e);
-            throw e;
-        } 
+        
         catch (Exception e) 
         {
             logger.error("Error updating Policy", e);
@@ -98,11 +97,7 @@ public class PolicyServicesImp implements IPolicyServices {
 
             logger.info("Policy deleted successfully with ID: {}", policyId);
         } 
-        catch (PolicyNotFoundException e) 
-        {
-            logger.error("Error deleting Policy", e);
-            throw e;
-        } 
+         
         catch (Exception e) 
         {
             logger.error("Error deleting Policy", e);
@@ -165,38 +160,38 @@ public class PolicyServicesImp implements IPolicyServices {
     }
 
     @Override
-    public List<Policy> getByPremiumLessThan(double premium) 
+    public List<Policy> getByAmountLessThan(double amount) 
     {
         try 
         {
-            List<Policy> policies = policyrepo.findByPremiumLessThan(premium);
+            List<Policy> policies = policyrepo.findByAmountLessThan(amount);
 
-            logger.info("Retrieved Policies by Premium Less Than successfully: {}", policies);
+            logger.info("Retrieved Policies by Amount Less Than successfully: {}", policies);
 
             return policies;
         } 
         catch (Exception e) 
         {
-            logger.error("Error getting Policies by Premium Less Than", e);
-            throw new RuntimeException("Error getting Policies by Premium Less Than", e);
+            logger.error("Error getting Policies by Amount Less Than", e);
+            throw new RuntimeException("Error getting Policies by Amount Less Than", e);
         }
     }
 
     @Override
-    public List<Policy> getByPremiumGreaterThan(double premium) 
+    public List<Policy> getByAmountGreaterThan(double amount) 
     {
         try 
         {
-            List<Policy> policies = policyrepo.findByPremiumGreaterThan(premium);
+            List<Policy> policies = policyrepo.findByAmountGreaterThan(amount);
 
-            logger.info("Retrieved Policies by Premium Greater Than successfully: {}", policies);
+            logger.info("Retrieved Policies by Amount Greater Than successfully: {}", policies);
 
             return policies;
         } 
         catch (Exception e) 
         {
-            logger.error("Error getting Policies by Premium Greater Than", e);
-            throw new RuntimeException("Error getting Policies by Premium Greater Than", e);
+            logger.error("Error getting Policies by Amount Greater Than", e);
+            throw new RuntimeException("Error getting Policies by Amount Greater Than", e);
         }
     }
 }

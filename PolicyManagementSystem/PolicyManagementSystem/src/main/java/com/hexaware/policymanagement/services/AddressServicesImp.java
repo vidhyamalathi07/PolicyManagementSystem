@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.hexaware.policymanagement.dto.AddressDTO;
 import com.hexaware.policymanagement.entity.Address;
+import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.exception.AddressNotFoundException;
 import com.hexaware.policymanagement.repository.AddressRepository;
 

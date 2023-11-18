@@ -3,11 +3,15 @@ package com.hexaware.policymanagement.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.NotEmpty;
@@ -17,6 +21,9 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 public class UserPolicy implements Serializable
@@ -24,6 +31,8 @@ public class UserPolicy implements Serializable
 	
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userPolicy_seq_generator")
+    @SequenceGenerator(name = "userPolicy_seq_generator", sequenceName = "userPolicy_seq", allocationSize = 1, initialValue =110000)
 	private long policyNo;
 	 
 	@NotNull(message = "Start date cannot be null")
@@ -61,15 +70,18 @@ public class UserPolicy implements Serializable
     private double interest;
     
      
-	
+    
 	@ManyToOne
 	@JoinColumn(name = "userId")
+    @JsonBackReference
 	private User user;
 	
-	@ManyToOne
+    
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "policyId")
 	private Policy policy;
 	
+ 
 	@OneToOne(mappedBy = "userPolicy")
 	private PolicyPayment policyPayment;
 	
@@ -190,9 +202,9 @@ public class UserPolicy implements Serializable
 		return "UserPolicy [policyNo=" + policyNo + ", startDate=" + startDate + ", policyName=" + policyName
 				+ ", policyType=" + policyType + ", company=" + company + ", endDate=" + endDate + ", paymentInterval="
 				+ paymentInterval + ", amount=" + amount + ", tenure=" + tenure + ", maturityAmount=" + maturityAmount
-				+ ", interest=" + interest + ", user=" + user + ", policy=" + policy + ", policyPayment="
-				+ policyPayment + "]";
+				+ ", interest=" + interest + ", user=" + user + ", policy=" + policy + "]";
 	}
+	
 	
 	
 }

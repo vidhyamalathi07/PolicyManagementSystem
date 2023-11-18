@@ -3,12 +3,17 @@ package com.hexaware.policymanagement.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 
 @Entity
@@ -18,7 +23,9 @@ public class Address implements Serializable
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	private long addressId;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq_generator")
+    @SequenceGenerator(name = "address_seq_generator", sequenceName = "address_seq", allocationSize = 1)
+   	private long addressId;
 	@NotEmpty(message = "City cannot be empty")
     @Size(max = 50, message = "City cannot exceed 50 characters")
     private String city;
@@ -35,6 +42,7 @@ public class Address implements Serializable
     @Digits(integer = 6, fraction = 0, message = "Invalid pincode format")
     private int pincode;
 	
+    @JsonBackReference
 	@OneToOne(mappedBy = "address")
 	private User user;
 
@@ -112,10 +120,16 @@ public class Address implements Serializable
 	}
 
 
+	
+
+
+	
+
+
 	@Override
 	public String toString() {
 		return "Address [addressId=" + addressId + ", city=" + city + ", addressLine=" + addressLine + ", state="
-				+ state + ", pincode=" + pincode + ", user=" + user + "]";
+				+ state + ", pincode=" + pincode + "]";
 	}
 
 

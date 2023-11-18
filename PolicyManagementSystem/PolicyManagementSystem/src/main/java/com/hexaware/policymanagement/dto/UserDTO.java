@@ -170,10 +170,11 @@ public class UserDTO
 	@Override
 	public String toString() {
 		return "UserDTO [userId=" + userId + ", fname=" + fname + ", lname=" + lname + ", password=" + password
-				+ ", email=" + email + ", mobNo=" + mobNo + ", userType=" + userType + ", userCategory=" + userCategory
-				+ ", dob=" + dob + ", address=" + address + ", users=" + users + "]";
+				+ ", email=" + email + ", mobNo=" + mobNo + ", userType=" + userType + ", employerType=" + employerType
+				+ ", employerName=" + employerName + ", panNumber=" + panNumber + ", userCategory=" + userCategory
+				+ ", dob=" + dob + ", address=" + address + "]";
 	}
-	
+
 	
 	
 		

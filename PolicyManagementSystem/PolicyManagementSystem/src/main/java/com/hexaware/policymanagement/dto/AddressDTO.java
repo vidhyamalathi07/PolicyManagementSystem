@@ -1,5 +1,6 @@
 package com.hexaware.policymanagement.dto;
 
+import com.hexaware.policymanagement.entity.User;
 
 public class AddressDTO 
 {
@@ -8,6 +9,7 @@ public class AddressDTO
 	private String addressLine;
 	private String state;
 	private int pincode;
+	private User user;
 
 
 	public long getAddressId() {
@@ -60,20 +62,31 @@ public class AddressDTO
 	}
 
 
-	public AddressDTO(long addressId, String city, String addressLine, String state, int pincode) {
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	@Override
+	public String toString() {
+		return "AddressDTO [addressId=" + addressId + ", city=" + city + ", addressLine=" + addressLine + ", state="
+				+ state + ", pincode=" + pincode + "]";
+	}
+
+
+	public AddressDTO(long addressId, String city, String addressLine, String state, int pincode, User user) {
 		super();
 		this.addressId = addressId;
 		this.city = city;
 		this.addressLine = addressLine;
 		this.state = state;
 		this.pincode = pincode;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Address [addressId=" + addressId + ", city=" + city + ", addressLine=" + addressLine + ", state="
-				+ state + ", pincode=" + pincode + "]";
+		this.user = user;
 	}
 
 

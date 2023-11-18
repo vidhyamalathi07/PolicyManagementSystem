@@ -67,17 +67,17 @@ public class PolicyController
 	}
 	
 	
-	@GetMapping("/get/premiumgt/{premium}")
-	public List<Policy> getByPremiumGreaterThan(@PathVariable long premium)
+	@GetMapping("/get/amountgt/{amount}")
+	public List<Policy> getByAmountGreaterThan(@PathVariable long amount)
 	{
-		return service.getByPremiumGreaterThan(premium);
+		return service.getByAmountGreaterThan(amount);
 		
 	}
 	
-	@GetMapping("/get/premiumlt/{premium}")
-	public List<Policy> getByPremiumLessThan(@PathVariable long premium)
+	@GetMapping("/get/amountlt/{amount}")
+	public List<Policy> getByAmountLessThan(@PathVariable long amount)
 	{
-		return service.getByPremiumLessThan(premium);
+		return service.getByAmountLessThan(amount);
 		
 	}	
 	

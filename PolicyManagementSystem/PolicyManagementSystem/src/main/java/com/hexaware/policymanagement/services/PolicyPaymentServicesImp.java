@@ -70,11 +70,6 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
 
             return updatedPolicyPayment;
         } 
-        catch (TransactionNotFoundException e) 
-        {
-            logger.error("Transaction not found", e);
-            throw e;  
-        }
         catch (Exception e) 
         {
             logger.error("Error updating Policy Payment", e);
@@ -101,7 +96,8 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
             logger.error("Transaction not found", e);
             throw e;  
         } 
-        	catch (Exception e) {
+        	catch (Exception e) 
+        {
             logger.error("Error deleting Policy Payment", e);
             throw new RuntimeException("Error deleting Policy Payment", e);
         }
@@ -132,12 +128,11 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
     }
 
     @Override
-    public PolicyPayment getPolicyPaymentByPolicyNo(PolicyPayment PolicyNo) 
+    public PolicyPayment getPolicyPaymentByPolicyNo(PolicyPayment policyNo) 
     {
         try 
         {
-            PolicyPayment policyPayment = policypayrepo.findByPolicyNo(PolicyNo)
-                    .orElseThrow(() -> new TransactionNotFoundException("Transaction not found with PolicyNo: " + PolicyNo));
+            PolicyPayment policyPayment = policypayrepo.findByUserPolicy(policyNo);
 
             logger.info("Retrieved Policy Payment by PolicyNo successfully: {}", policyPayment);
 

@@ -9,7 +9,7 @@ import com.hexaware.policymanagement.entity.PolicyPayment;
 public interface PolicyPaymentRepository extends JpaRepository<PolicyPayment, Long> 
 {
 	
-	public PolicyPayment findByPolicyNo(PolicyPayment policyNo);
+	public PolicyPayment findByUserPolicy(PolicyPayment policyNo);
 	
 
 

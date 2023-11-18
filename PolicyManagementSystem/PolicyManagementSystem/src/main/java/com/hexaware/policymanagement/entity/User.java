@@ -7,15 +7,21 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -23,7 +29,11 @@ public class User implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 		@Id
+		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_generator")
+	    @SequenceGenerator(name = "user_seq_generator", sequenceName = "user_seq", allocationSize = 1)
 		private long userId;
+		
+		
 		@NotEmpty(message = "First name cannot be empty")
 	    @Size(max = 50, message = "First name cannot exceed 50 characters")
 	    @Pattern(regexp = "^[a-zA-Z\\s]+$", message = "First name can only contain letters and spaces")
@@ -35,9 +45,6 @@ public class User implements Serializable
 	    private String lname;
 
 	    @NotEmpty(message = "Password cannot be empty")
-	    @Size(min = 8, message = "Password must be at least 8 characters")
-	    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
-	            message = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character")
 	    private String password;
 
 	    @Email(message = "Invalid email format")
@@ -63,16 +70,17 @@ public class User implements Serializable
 	    @Past(message = "Date of birth must be in the past")
 	    private LocalDate dob;
 	    
-	    @Pattern(regexp = "^[A-Z]{5}[0-9]{4}[A-Z]$", message = "Invalid PAN number")
 	    private String panNumber;
 		
+	    @JsonManagedReference
 		@OneToOne(cascade = CascadeType.ALL)
-		@JoinColumn(name = "addressId")
+		@JoinColumn(name = "addressId",referencedColumnName = "addressId")
 		private Address address;
 		
-		
+	    
 		@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-		private Set<UserPolicy> users = new HashSet<>();
+		@JsonManagedReference
+		private Set<UserPolicy> userPolicies = new HashSet<>();
 		
 		
 		
@@ -143,11 +151,11 @@ public class User implements Serializable
 		public void setPanNumber(String panNumber) {
 			this.panNumber = panNumber;
 		}
-		public Set<UserPolicy> getUsers() {
-			return users;
+		public Set<UserPolicy> getUserPolicies() {
+			return userPolicies;
 		}
-		public void setUsers(Set<UserPolicy> users) {
-			this.users = users;
+		public void setUserPolicies(Set<UserPolicy> userPolicies) {
+			this.userPolicies = userPolicies;
 		}
 		
 		public String getEmployerType() {
@@ -163,7 +171,7 @@ public class User implements Serializable
 			this.employerName = employerName;
 		}
 		public User(long userId, String fname, String lname, String password, String email, String mobNo, String userType, String employerType, String employerName,
-				String userCategory, Address address, LocalDate dob, String panNumber, Set<UserPolicy> users) {
+				String userCategory, Address address, LocalDate dob, String panNumber, Set<UserPolicy> userPolicies) {
 			super();
 			this.userId = userId;
 			this.fname = fname;
@@ -178,7 +186,7 @@ public class User implements Serializable
 			this.address = address;
 			this.dob = dob;
 			this.panNumber = panNumber;
-			this.users = users;
+			this.userPolicies = userPolicies;
 		}
 		
 		
@@ -187,7 +195,7 @@ public class User implements Serializable
 			return "User [userId=" + userId + ", fname=" + fname + ", lname=" + lname + ", password=" + password
 					+ ", email=" + email + ", mobNo=" + mobNo + ", userType=" + userType + ", employerType="
 					+ employerType + ", employerName=" + employerName + ", userCategory=" + userCategory + ", dob="
-					+ dob + ", panNumber=" + panNumber + ", address=" + address + ", users=" + users + "]";
+					+ dob + ", panNumber=" + panNumber + ", address=" + address + "]";
 		}
 		public User() {
 			super();
@@ -196,7 +204,7 @@ public class User implements Serializable
 		{
 			user.setUser(this);
 			
-			Set<UserPolicy> set = getUsers() ;
+			Set<UserPolicy> set = getUserPolicies() ;
 			
 			set.add(user);
 		}

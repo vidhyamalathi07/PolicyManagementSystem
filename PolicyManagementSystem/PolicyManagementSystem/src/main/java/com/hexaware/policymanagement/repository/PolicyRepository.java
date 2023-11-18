@@ -14,8 +14,8 @@ public interface PolicyRepository extends JpaRepository<Policy, Long>
 	
 	public List<Policy> findByCompany(String company);
 	
-	public List<Policy> findByPremiumGreaterThan(double premium);
+	public List<Policy> findByAmountGreaterThan(double amount);
 	
-	public List<Policy> findByPremiumLessThan(double premium); 
+	public List<Policy> findByAmountLessThan(double amount); 
 
 }

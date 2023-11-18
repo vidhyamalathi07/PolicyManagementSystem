@@ -3,6 +3,11 @@ package com.hexaware.policymanagement.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hexaware.policymanagement.dto.AuthRequest;
 import com.hexaware.policymanagement.dto.UserDTO;
 import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.services.IUserServices;
+import com.hexaware.policymanagement.services.JwtService;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -22,6 +29,12 @@ public class UserController
 {
 	@Autowired
 	IUserServices service;
+	
+	@Autowired
+	JwtService jwtService;
+	
+	@Autowired
+	AuthenticationManager authenticationManager;
 	
 	@PostMapping(value = "/add")
 	public User createUser(@RequestBody UserDTO userDTO)
@@ -45,6 +58,7 @@ public class UserController
 	
 	
 	@GetMapping(value = "/getall",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
 	public List<User> getAllUser()
 	{
 		return service.getAllUser();
@@ -53,6 +67,7 @@ public class UserController
 	
 	
 	@GetMapping(value = "/get/mobile/{mobNo}")
+	@PreAuthorize("hasAuthority('Admin')")
 	public User getUserByMobNo(@PathVariable String mobNo)
 	{
 		return service.getUserByMobNo(mobNo);
@@ -60,7 +75,7 @@ public class UserController
 	}
 	
 	@GetMapping(value = "/get/email/{email}")
-	public User getUserPolicyByEmail(@PathVariable String email)
+	public UserDTO getUserPolicyByEmail(@PathVariable String email)
 	{
 		return service.getUserByEmail(email);
 		
@@ -78,6 +93,31 @@ public class UserController
 	{
 		return service.getUserByUserCategory(userCategory);
 		
+	}
+	
+	
+	@PostMapping("/authenticate")
+	public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) 
+	{
+
+		Authentication  authenticate = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
+
+		String token = null;
+		
+		if (authenticate.isAuthenticated()) {
+
+			token = jwtService.generateToken(authRequest.getUsername());
+			
+		}
+
+		else {
+			
+			throw  new UsernameNotFoundException("Invalid Username or Password / Invalid request");
+		}
+	
+		return token;
+	
 	}
 
 }

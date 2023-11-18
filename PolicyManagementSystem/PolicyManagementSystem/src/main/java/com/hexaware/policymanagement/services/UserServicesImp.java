@@ -5,12 +5,14 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.hexaware.policymanagement.dto.UserDTO;
 import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.exception.DuplicateUserException;
 import com.hexaware.policymanagement.exception.UserNotFoundException;
+import com.hexaware.policymanagement.repository.AddressRepository;
 import com.hexaware.policymanagement.repository.UserRepository;
 
 @Service
@@ -20,6 +22,12 @@ public class UserServicesImp implements IUserServices {
 
 	@Autowired
 	UserRepository userRepo;
+	
+	@Autowired
+	AddressRepository addressRepo;
+	
+	@Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public User createUser(UserDTO userDTO) 
@@ -46,7 +54,12 @@ public class UserServicesImp implements IUserServices {
 			user.setUserCategory(userDTO.getUserCategory());
 			user.setUserType(userDTO.getUserType());
 			user.setDob(userDTO.getDob());
-			user.setPassword(userDTO.getPassword());
+			user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
+			
+			if (userDTO.getAddress() != null) 
+			{
+	            addressRepo.save(userDTO.getAddress());
+	        }
 			user.setAddress(userDTO.getAddress());
 			user.setPanNumber(userDTO.getPanNumber());
 			user.setEmployerName(userDTO.getEmployerName());
@@ -84,7 +97,11 @@ public class UserServicesImp implements IUserServices {
 			user.setUserCategory(userDTO.getUserCategory());
 			user.setUserType(userDTO.getUserType());
 			user.setDob(userDTO.getDob());
-			user.setPassword(userDTO.getPassword());
+			user.setPassword(bCryptPasswordEncoder.encode(userDTO.getPassword()));
+			if (userDTO.getAddress() != null) 
+			{
+	            addressRepo.save(userDTO.getAddress());
+	        }
 			user.setAddress(userDTO.getAddress());
 			user.setPanNumber(userDTO.getPanNumber());
 			user.setEmployerName(userDTO.getEmployerName());
@@ -125,19 +142,39 @@ public class UserServicesImp implements IUserServices {
 	}
 
 	@Override
-	public User getUserByEmail(String email) 
+	public UserDTO getUserByEmail(String email) 
 	{
-		try {
+		try 
+		{
 			User user = userRepo.findByEmail(email);
-
 			if (user == null) 
 			{
 				throw new UserNotFoundException("User not found with email: " + email);
 			}
+			
+			
+			UserDTO userDTO = new UserDTO();
+			userDTO.setUserId(user.getUserId());
+			userDTO.setFname(user.getFname());
+			userDTO.setLname(user.getLname());
+			userDTO.setEmail(user.getEmail());
+			userDTO.setMobNo(user.getMobNo());
+			userDTO.setUserCategory(user.getUserCategory());
+			userDTO.setUserType(user.getUserType());
+			userDTO.setDob(user.getDob());
+			userDTO.setPassword(user.getPassword());
+			if (user.getAddress() != null) 
+			{
+				userDTO.setAddress(user.getAddress());
+	        }
+			userDTO.setPanNumber(user.getPanNumber());
+			userDTO.setEmployerName(user.getEmployerName());
+			userDTO.setEmployerType(user.getEmployerType());
+
 
 			logger.info("User retrieved successfully by email: {}", user);
 
-			return user;
+			return userDTO;
 		} 
 		catch (Exception e) 
 		{
@@ -184,24 +221,6 @@ public class UserServicesImp implements IUserServices {
 		{
 			logger.error("Error getting all users", e);
 			throw new RuntimeException("Error getting all users", e);
-		}
-	}
-
-	@Override
-	public List<User> getUserByFname(String fname) 
-	{
-		try 
-		{
-			List<User> users = userRepo.findByFname(fname);
-
-			logger.info("Retrieved users by first name '{}' successfully: {}", fname, users);
-
-			return users;
-		}
-		catch (Exception e) 
-		{
-			logger.error("Error getting users by first name", e);
-			throw new RuntimeException("Error getting users by first name", e);
 		}
 	}
 
