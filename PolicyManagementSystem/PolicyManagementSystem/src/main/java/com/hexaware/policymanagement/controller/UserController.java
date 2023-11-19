@@ -45,7 +45,7 @@ public class UserController
 	
 	
 	@PutMapping(value = "/update")
-    @PreAuthorize("hasAnyAuthority('Admin', 'User')")
+    @PreAuthorize("hasAnyAuthority('Admin','User')")
 	public User updateUser(@RequestBody UserDTO userDTO)
 	{
 		return service.updateUser(userDTO);

@@ -82,7 +82,6 @@ public class UserPolicy implements Serializable
 	
  
 	@OneToOne(mappedBy = "userPolicy")
-	@JsonBackReference
 	private PolicyPayment policyPayment;
 	
 	

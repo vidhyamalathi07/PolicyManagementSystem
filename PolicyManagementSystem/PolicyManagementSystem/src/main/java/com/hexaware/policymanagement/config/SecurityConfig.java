@@ -39,7 +39,7 @@ public class SecurityConfig
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests()
-                .antMatchers("/api/v1/**").permitAll()
+                .antMatchers("/api/v1/users/authenticate").permitAll()
                 .and()
                 .authorizeHttpRequests().antMatchers("/api/v1/**")
                 .authenticated().and()

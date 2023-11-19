@@ -16,8 +16,6 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class PolicyPayment implements Serializable
 {
@@ -44,7 +42,6 @@ public class PolicyPayment implements Serializable
     private double fine;
 	
     
-    @JsonManagedReference
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "policyNo")
 	private UserPolicy userPolicy;
