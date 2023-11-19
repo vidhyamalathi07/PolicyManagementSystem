@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hexaware.policymanagement.dto.UserPolicyDTO;
+import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.entity.UserPolicy;
 import com.hexaware.policymanagement.exception.UserPolicyNotFoundException;
 import com.hexaware.policymanagement.repository.PolicyRepository;
@@ -144,4 +145,20 @@ public class UserPolicyServicesImp implements IUserPolicyServices {
             throw new RuntimeException("Error getting all User Policies", e);
         }
     }
+
+	@Override
+	public List<UserPolicy> getUserPolicyByUserId(User userId) {
+		try {
+            List<UserPolicy> userPolicy = userpolicyrepo.getUserPoliciesByUserId(userId);
+            logger.info("User Policies retrieved successfully with User Id: {}", userId);
+
+            return userPolicy;
+        } catch (UserPolicyNotFoundException e) {
+            logger.error("Error getting User Policy by User Id", e);
+            throw e;
+        } catch (Exception e) {
+            logger.error("Error getting User Policy by User Id", e);
+            throw new RuntimeException("Error getting User Policy by User Id", e);
+        }
+	}
 }

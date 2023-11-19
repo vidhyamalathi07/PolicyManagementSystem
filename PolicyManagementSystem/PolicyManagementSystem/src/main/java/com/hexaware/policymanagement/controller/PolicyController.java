@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,7 @@ public class PolicyController
 	IPolicyServices service;
 	
 	@PostMapping(value = "/add",consumes = "application/json",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
 	public Policy addPolicy(@RequestBody PolicyDTO policyDTO)
 	{
 		
@@ -34,6 +36,7 @@ public class PolicyController
 	
 	
 	@PutMapping(value = "/update",consumes = "application/json",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
 	public Policy updatePolicy(@RequestBody PolicyDTO policyDTO)
 	{
 		return service.updatePolicy(policyDTO);
@@ -41,12 +44,16 @@ public class PolicyController
 	
 	
 	@DeleteMapping(value = "/delete/{policyId}",consumes = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public void deletePolicyById(@PathVariable Long policyId)
 	{
 		service.deleteByPolicyId(policyId);
 	}
 	
 	@GetMapping(value = "/get/company/{company}",produces = "application/json")
+	@PreAuthorize("hasAnyAuthority('Admin','User')")
+
 	public List<Policy> getPolicyByCompany(@PathVariable String company)
 	{
 		return service.getPolicyByCompany(company);
@@ -54,6 +61,9 @@ public class PolicyController
 	
 	
 	@GetMapping(value = "/getall",produces = "application/json")
+	@PreAuthorize("hasAnyAuthority('Admin','User')")
+
+	
 	public List<Policy> getAllPolicy()
 	{
 		return service.getAllPolicy();
@@ -61,6 +71,8 @@ public class PolicyController
 	}
 	
 	@GetMapping(value = "/get/policy-type/{policyType}",produces = "application/json")
+	@PreAuthorize("hasAnyAuthority('Admin','User')")
+
 	public List<Policy> getPolicyByPolicyType(@PathVariable String policyType)
 	{
 		return service.getPolicyByPolicyType(policyType);
@@ -68,6 +80,8 @@ public class PolicyController
 	
 	
 	@GetMapping("/get/amountgt/{amount}")
+	@PreAuthorize("hasAnyAuthority('Admin','User')")
+
 	public List<Policy> getByAmountGreaterThan(@PathVariable long amount)
 	{
 		return service.getByAmountGreaterThan(amount);
@@ -75,41 +89,13 @@ public class PolicyController
 	}
 	
 	@GetMapping("/get/amountlt/{amount}")
+	@PreAuthorize("hasAnyAuthority('Admin','User')")
+
 	public List<Policy> getByAmountLessThan(@PathVariable long amount)
 	{
 		return service.getByAmountLessThan(amount);
 		
 	}	
-	
-	
-	
-	/*@GetMapping(value = "/get/{policyId}",produces = "application/json")
-	public ResponseEntity<String> getPolicyById(@PathVariable Long policyId) throws PolicyNotFoundException
-	{
-		
-		Policy p = service.getPolicyById(policyId);
-		ResponseEntity<String> response;
-		if(p==null)
-		{
-			try 
-			{
-				throw new PolicyNotFoundException(HttpStatus.BAD_REQUEST, "Policy Not Found with policyId "+ policyId);
-	
-			}
-			catch(PolicyNotFoundException po)
-			{
-				response = new ResponseEntity<String>(po.getMessage(), HttpStatus.BAD_REQUEST);
-			}
-		}
-		
-		else
-		{
-			response = new ResponseEntity<String>(p.toString(), HttpStatus.FOUND);
-
-		}
-		return response;
-	}
-	*/
 	
 	
 	

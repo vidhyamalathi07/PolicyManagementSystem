@@ -1,10 +1,5 @@
 package com.hexaware.policymanagement.dto;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import com.hexaware.policymanagement.entity.UserPolicy;
-
 public class PolicyDTO 
 {
 	private long policyId;

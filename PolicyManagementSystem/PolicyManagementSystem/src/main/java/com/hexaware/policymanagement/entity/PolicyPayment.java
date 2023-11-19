@@ -3,6 +3,7 @@ package com.hexaware.policymanagement.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -43,7 +44,8 @@ public class PolicyPayment implements Serializable
     private double fine;
 	
     
-	@OneToOne
+    @JsonManagedReference
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "policyNo")
 	private UserPolicy userPolicy;
 

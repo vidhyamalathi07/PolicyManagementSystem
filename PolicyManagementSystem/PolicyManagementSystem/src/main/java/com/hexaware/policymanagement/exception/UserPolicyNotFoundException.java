@@ -2,7 +2,9 @@ package com.hexaware.policymanagement.exception;
 
 public class UserPolicyNotFoundException extends RuntimeException {
 
-    public UserPolicyNotFoundException(String message) {
+	private static final long serialVersionUID = 1L;
+
+	public UserPolicyNotFoundException(String message) {
         super(message);
     }
 }

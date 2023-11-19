@@ -37,6 +37,7 @@ public class UserController
 	AuthenticationManager authenticationManager;
 	
 	@PostMapping(value = "/add")
+    @PreAuthorize("hasAnyAuthority('Admin', 'User')")
 	public User createUser(@RequestBody UserDTO userDTO)
 	{
 		return service.createUser(userDTO);
@@ -44,6 +45,7 @@ public class UserController
 	
 	
 	@PutMapping(value = "/update")
+    @PreAuthorize("hasAnyAuthority('Admin', 'User')")
 	public User updateUser(@RequestBody UserDTO userDTO)
 	{
 		return service.updateUser(userDTO);
@@ -51,6 +53,7 @@ public class UserController
 	
 	
 	@DeleteMapping(value = "/delete/{userId}")
+	@PreAuthorize("hasAuthority('Admin')")
 	public void deleteByUserId(@PathVariable long userId)
 	{
 		service.deleteByUserId(userId);
@@ -75,6 +78,7 @@ public class UserController
 	}
 	
 	@GetMapping(value = "/get/email/{email}")
+	@PreAuthorize("hasAuthority('Admin')")
 	public UserDTO getUserPolicyByEmail(@PathVariable String email)
 	{
 		return service.getUserByEmail(email);
@@ -82,6 +86,7 @@ public class UserController
 	}
 	
 	@GetMapping(value = "/get/type/{userType}")
+	@PreAuthorize("hasAuthority('Admin')")
 	public List<User> getUserByUserType(@PathVariable String userType)
 	{
 		return service.getUserByUserType(userType);
@@ -89,6 +94,7 @@ public class UserController
 	}
 	
 	@GetMapping(value = "/get/category/{userCategory}")
+	@PreAuthorize("hasAuthority('Admin')")
 	public List<User> getUserByUserCategory(@PathVariable String userCategory)
 	{
 		return service.getUserByUserCategory(userCategory);

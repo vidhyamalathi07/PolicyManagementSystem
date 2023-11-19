@@ -19,6 +19,10 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
 
     @Autowired
     PolicyPaymentRepository policypayrepo;
+    
+    String notFound = "Transaction not found with TxnId: ";
+    String txNotFound = "Transaction not found";
+
 
     @Override
     public PolicyPayment createPolicyPayment(PolicyPaymentDTO policyPaymentDTO) 
@@ -52,7 +56,7 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
         {
             if (!policypayrepo.existsById(policyPaymentDTO.getTxnId())) 
             {
-                throw new TransactionNotFoundException("Transaction not found with TxnId: " + policyPaymentDTO.getTxnId());
+                throw new TransactionNotFoundException(notFound + policyPaymentDTO.getTxnId());
             }
 
             PolicyPayment policyPayment = new PolicyPayment();
@@ -84,7 +88,7 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
         {
             if (!policypayrepo.existsById(txnId)) 
             {
-                throw new TransactionNotFoundException("Transaction not found with TxnId: " + txnId);
+                throw new TransactionNotFoundException(notFound + txnId);
             }
 
             policypayrepo.deleteById(txnId);
@@ -93,7 +97,7 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
         } 
         	catch (TransactionNotFoundException e) 
         {
-            logger.error("Transaction not found", e);
+            logger.error(txNotFound, e);
             throw e;  
         } 
         	catch (Exception e) 
@@ -109,7 +113,7 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
         try 
         {
             PolicyPayment policyPayment = policypayrepo.findById(txnId)
-                    .orElseThrow(() -> new TransactionNotFoundException("Transaction not found with TxnId: " + txnId));
+                    .orElseThrow(() -> new TransactionNotFoundException(notFound + txnId));
 
             logger.info("Retrieved Policy Payment by TxnId successfully: {}", policyPayment);
 
@@ -117,7 +121,7 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
         } 
         catch (TransactionNotFoundException e) 
         {
-            logger.error("Transaction not found", e);
+            logger.error(txNotFound, e);
             throw e;  
         } 
         catch (Exception e) 
@@ -140,7 +144,7 @@ public class PolicyPaymentServicesImp implements IPolicyPaymentServices {
         } 
         catch (TransactionNotFoundException e) 
         {
-            logger.error("Transaction not found", e);
+            logger.error(txNotFound, e);
             throw e;  
         } 
         catch (Exception e) 

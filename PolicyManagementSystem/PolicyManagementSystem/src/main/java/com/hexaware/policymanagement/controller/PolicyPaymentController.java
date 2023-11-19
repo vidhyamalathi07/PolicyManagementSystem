@@ -3,6 +3,7 @@ package com.hexaware.policymanagement.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,8 @@ public class PolicyPaymentController
 
 
 	@PostMapping(value = "/add",consumes = "application/json",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public PolicyPayment createPolicyPayment(@RequestBody PolicyPaymentDTO policyPaymentDTO)
 	{
 		return service.createPolicyPayment(policyPaymentDTO);
@@ -32,6 +35,8 @@ public class PolicyPaymentController
 	
 	
 	@PutMapping(value = "/update",consumes = "application/json",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public PolicyPayment updatePolicyPayment(@RequestBody PolicyPaymentDTO policyPaymentDTO)
 	{
 		return service.updatePolicyPayment(policyPaymentDTO);
@@ -39,13 +44,17 @@ public class PolicyPaymentController
 	
 	
 	@DeleteMapping(value = "/delete/{TxnId}",consumes = "application/json")
-	public void deletePolicyPaymentByTxnId(@PathVariable long TxnId)
+	@PreAuthorize("hasAuthority('Admin')")
+
+	public void deletePolicyPaymentByTxnId(@PathVariable long txnId)
 	{
-		service.deletePolicyPaymentByTxnId(TxnId);
+		service.deletePolicyPaymentByTxnId(txnId);
 	}
 	
 	
 	@GetMapping(value = "/getall",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public List<PolicyPayment> getAllPolicyPayment()
 	{
 		return service.getAllPolicyPayment();
@@ -54,6 +63,8 @@ public class PolicyPaymentController
 	
 	
 	@GetMapping(value = "/get/policy-no/{policyNo}",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public PolicyPayment getPolicyPaymentByPolicyNo(@PathVariable PolicyPayment policyNo)
 	{
 		return service.getPolicyPaymentByPolicyNo(policyNo);
@@ -61,6 +72,8 @@ public class PolicyPaymentController
 	}
 	
 	@GetMapping(value = "/get/txnId/{txnId}",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public PolicyPayment getPolicyPaymentByTxnId(@PathVariable long txnId)
 	{
 		return service.getPolicyPaymentByTxnId(txnId);

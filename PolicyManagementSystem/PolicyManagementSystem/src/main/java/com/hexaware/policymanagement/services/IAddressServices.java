@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.hexaware.policymanagement.dto.AddressDTO;
 import com.hexaware.policymanagement.entity.Address;
-import com.hexaware.policymanagement.entity.Policy;
 
 public interface IAddressServices 
 {

@@ -3,6 +3,7 @@ package com.hexaware.policymanagement.services;
 import java.util.List;
 
 import com.hexaware.policymanagement.dto.UserPolicyDTO;
+import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.entity.UserPolicy;
 
 public interface IUserPolicyServices 
@@ -11,6 +12,7 @@ public interface IUserPolicyServices
 	public UserPolicy updateUserPolicy(UserPolicyDTO userpolicyDTO);
 	public void deleteUserPolicyByPolicyNo(long policyNo);
 	public UserPolicy getUserPolicyByPolicyNo(long policyNo);
+	public List<UserPolicy> getUserPolicyByUserId(User userId);
 
 	public List<UserPolicy> getAllUserPolicy();
 

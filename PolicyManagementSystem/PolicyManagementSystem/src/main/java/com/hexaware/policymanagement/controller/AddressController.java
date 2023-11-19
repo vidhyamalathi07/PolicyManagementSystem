@@ -3,6 +3,7 @@ package com.hexaware.policymanagement.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,7 @@ public class AddressController
 	
 
 	@PostMapping(value = "/add",consumes = "application/json",produces = "application/json")
+	@PreAuthorize("hasAnyAuthority('Admin','User')")
 	public Address createAddress(@RequestBody AddressDTO addressDTO)
 	{
 		return service.createAddress(addressDTO);
@@ -32,6 +34,8 @@ public class AddressController
 	
 	
 	@PutMapping(value = "/update",consumes = "application/json",produces = "application/json")
+	@PreAuthorize("hasAnyAuthority('Admin','User')")
+
 	public Address updateAddress(@RequestBody AddressDTO addressDTO)
 	{
 		return service.updateAddress(addressDTO);
@@ -39,12 +43,16 @@ public class AddressController
 	
 	
 	@DeleteMapping(value = "/delete/{addressId}",consumes = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public void deleteByAddressId(@PathVariable long addressId)
 	{
 		service.deleteByAddressId(addressId);
 	}
 	
 	@GetMapping(value = "/get/state/{state}",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public List<Address> getAddressByState(@PathVariable String state)
 	{
 		return service.getByState(state);
@@ -52,6 +60,8 @@ public class AddressController
 	}
 	
 	@GetMapping(value = "/get/city/{city}",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public List<Address> getAddressByCity(@PathVariable String city)
 	{
 		return service.getByCity(city);
@@ -60,6 +70,8 @@ public class AddressController
 
 	
 	@GetMapping(value = "/getall",produces = "application/json")
+	@PreAuthorize("hasAuthority('Admin')")
+
 	public List<Address> getAllAddress()
 	{
 		return service.getAllAddress();

@@ -30,17 +30,8 @@ public class SecurityConfig
 	JwtAuthFilter authFilter;
 
     @Bean
-    //authentication
     public UserDetailsService userDetailsService() {
-//        UserDetails admin = User.withUsername("Basant")
-//                .password(encoder.encode("Pwd1"))
-//                .roles("ADMIN")
-//                .build();
-//        UserDetails user = User.withUsername("John")
-//                .password(encoder.encode("Pwd2"))
-//                .roles("USER","ADMIN","HR")
-//                .build();
-//        return new InMemoryUserDetailsManager(admin, user);
+
         return new UserInfoUserDetailsService();
     }
 
@@ -48,10 +39,10 @@ public class SecurityConfig
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests()
-                .antMatchers("/api/v1/users/authenticate").permitAll()
+                .antMatchers("/api/v1/**").permitAll()
                 .and()
                 .authorizeHttpRequests().antMatchers("/api/v1/**")
-                .authenticated().and() //.formLogin().and().build();
+                .authenticated().and()
                 .sessionManagement(management -> management
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())

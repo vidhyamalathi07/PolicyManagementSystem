@@ -20,7 +20,6 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -64,7 +63,7 @@ public class User implements Serializable
 	    @Size(max = 100, message = "Employer name cannot exceed 100 characters")
 	    private String employerName;
 
-	    @Pattern(regexp = "^(A|B|C|D|E)$", message = "Invalid user category")
+	    @NotEmpty( message = "Invalid user category")
 	    private String userCategory;
 
 	    @Past(message = "Date of birth must be in the past")
