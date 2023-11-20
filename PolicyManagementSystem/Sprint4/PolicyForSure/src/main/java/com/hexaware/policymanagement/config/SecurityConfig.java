@@ -39,7 +39,11 @@ public class SecurityConfig
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests()
-                .antMatchers("/api/v1/users/authenticate").permitAll()
+                .antMatchers(
+                		"/api/v1/login/user",
+                		"/api/v1/users/add",
+                        "/swagger-ui/**",
+                        "/swagger-resources/**").permitAll()
                 .and()
                 .authorizeHttpRequests().antMatchers("/api/v1/**")
                 .authenticated().and()

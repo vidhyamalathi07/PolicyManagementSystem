@@ -22,6 +22,10 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+/* Author:Devanshu
+ * @UpdatedOn:09-11-2023
+ * Description: This is a User Entity Class
+ */
 
 @Entity
 public class User implements Serializable
