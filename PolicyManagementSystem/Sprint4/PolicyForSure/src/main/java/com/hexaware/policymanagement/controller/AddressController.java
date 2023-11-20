@@ -26,7 +26,6 @@ public class AddressController
 	
 
 	@PostMapping(value = "/add",consumes = "application/json",produces = "application/json")
-	@PreAuthorize("hasAnyAuthority('Admin','User')")
 	public Address createAddress(@RequestBody AddressDTO addressDTO)
 	{
 		return service.createAddress(addressDTO);

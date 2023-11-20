@@ -33,7 +33,6 @@ public class UserController
 	AuthenticationManager authenticationManager;
 	
 	@PostMapping(value = "/add")
-    @PreAuthorize("hasAnyAuthority('Admin', 'User')")
 	public User createUser(@RequestBody UserDTO userDTO)
 	{
 		return service.createUser(userDTO);
