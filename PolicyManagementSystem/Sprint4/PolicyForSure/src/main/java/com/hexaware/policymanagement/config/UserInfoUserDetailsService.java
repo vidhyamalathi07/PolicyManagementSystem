@@ -11,15 +11,20 @@ import org.springframework.stereotype.Component;
 
 import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.repository.UserRepository;
-
+/* Author:Devanshu
+ * @CreatedOn:-17-11-2023
+ * Description: UserDetailsService implementation for AuthorizationT 
+ */
 @Component
-public class UserInfoUserDetailsService implements UserDetailsService {
+public class UserInfoUserDetailsService implements UserDetailsService 
+{
 
     @Autowired
     private UserRepository repository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException 
+    {
         Optional<User> user = repository.findByFname(username);
         return user.map(UserInfoUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("user not found " + username));

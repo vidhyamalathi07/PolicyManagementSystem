@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.hexaware.policymanagement.dto.PolicyPaymentDTO;
 import com.hexaware.policymanagement.entity.PolicyPayment;
-
+/* Author:Devanshu/Vidhyamalathi
+ * @CreatedOn:-14-11-2023
+ * Description: PolicyPayment Service Interface
+ */
 public interface IPolicyPaymentServices 
 {
 	public PolicyPayment createPolicyPayment(PolicyPaymentDTO policyPaymentDTO);

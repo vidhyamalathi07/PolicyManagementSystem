@@ -11,7 +11,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.hexaware.policymanagement.entity.User;
-
+/* Author:Devanshu
+ * @CreatedOn:-17-11-2023
+ * Description: UserInfoUserDetails for AuthorizationT 
+ */
 public class UserInfoUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1L;

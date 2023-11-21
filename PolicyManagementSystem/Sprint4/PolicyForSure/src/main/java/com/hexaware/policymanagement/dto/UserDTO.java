@@ -6,7 +6,10 @@ import java.util.Set;
 
 import com.hexaware.policymanagement.entity.Address;
 import com.hexaware.policymanagement.entity.UserPolicy;
-
+/* Author:Vidhyamalathi
+ * @CreatedOn:-12-11-2023
+ * Description: AddressDTO Class
+ */
 
 public class UserDTO 
 {

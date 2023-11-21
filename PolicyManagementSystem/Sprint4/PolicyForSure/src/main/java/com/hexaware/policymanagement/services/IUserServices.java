@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.hexaware.policymanagement.dto.UserDTO;
 import com.hexaware.policymanagement.entity.User;
-
+/* Author:Devanshu
+ * @CreatedOn:-14-11-2023
+ * Description: User Service Interface
+ */
 public interface IUserServices 
 {
 	public User createUser(UserDTO userDTO);

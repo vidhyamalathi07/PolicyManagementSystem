@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.hexaware.policymanagement.dto.PolicyDTO;
 import com.hexaware.policymanagement.entity.Policy;
-
+/* Author:Devanshu/Vidhyamalathi
+ * @CreatedOn:-14-11-2023
+ * Description: Policy Service Interface
+ */
 public interface IPolicyServices 
 {
 	public Policy createPolicy(PolicyDTO policyDTO);

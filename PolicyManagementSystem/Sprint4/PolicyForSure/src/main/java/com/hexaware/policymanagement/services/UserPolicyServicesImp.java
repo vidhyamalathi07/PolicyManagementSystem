@@ -14,7 +14,14 @@ import com.hexaware.policymanagement.exception.UserPolicyNotFoundException;
 import com.hexaware.policymanagement.repository.PolicyRepository;
 import com.hexaware.policymanagement.repository.UserPolicyRepository;
 import com.hexaware.policymanagement.repository.UserRepository;
-
+/* Author:Devanshu
+ * @CreatedOn:-14-11-2023
+ * Description: UserPolicy Service Implementaion
+ */
+/* Author:Devanshu
+ * @UpdatedOn:-16-11-2023
+ * Description: Added Exception and logger
+ */
 @Service
 public class UserPolicyServicesImp implements IUserPolicyServices {
 

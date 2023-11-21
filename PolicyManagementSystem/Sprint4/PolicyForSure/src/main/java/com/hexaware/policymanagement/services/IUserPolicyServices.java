@@ -5,7 +5,10 @@ import java.util.List;
 import com.hexaware.policymanagement.dto.UserPolicyDTO;
 import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.entity.UserPolicy;
-
+/* Author:Devanshu/Vidhyamalathi
+ * @CreatedOn:-14-11-2023
+ * Description: UserPolicy Service Interface
+ */
 public interface IUserPolicyServices 
 {
 	public UserPolicy createUserPolicy(UserPolicyDTO userpolicyDTO);

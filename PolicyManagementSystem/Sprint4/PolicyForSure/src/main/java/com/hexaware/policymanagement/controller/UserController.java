@@ -18,7 +18,14 @@ import com.hexaware.policymanagement.dto.UserDTO;
 import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.services.IUserServices;
 import com.hexaware.policymanagement.services.JwtService;
-
+/* Author:Devanshu
+ * @CreatedOn:-15-11-2023
+ * Description: Address Controller Class
+ */
+/* Author:Devanshu/VidhyaMalathi
+ * @UpdatedOn:-17-11-2023
+ * Description: Assigned Authority
+ */
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController 

@@ -4,7 +4,10 @@ import java.util.List;
 
 import com.hexaware.policymanagement.dto.AddressDTO;
 import com.hexaware.policymanagement.entity.Address;
-
+/* Author:Devanshu/Vidhyamalathi
+ * @CreatedOn:-14-11-2023
+ * Description: Address Service Interface
+ */
 public interface IAddressServices 
 {
 

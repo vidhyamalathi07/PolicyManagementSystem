@@ -17,7 +17,14 @@ import com.hexaware.policymanagement.dto.UserPolicyDTO;
 import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.entity.UserPolicy;
 import com.hexaware.policymanagement.services.IUserPolicyServices;
-
+/* Author:Devanshu
+ * @CreatedOn:-15-11-2023
+ * Description: Address Controller Class
+ */
+/* Author:Devanshu
+ * @UpdatedOn:-17-11-2023
+ * Description: Assigned Authority
+ */
 @RestController
 @RequestMapping("/api/v1/userpolicies")
 public class UserPolicyController 

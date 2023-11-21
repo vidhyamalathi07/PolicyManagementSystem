@@ -443,3 +443,139 @@ io.jsonwebtoken.ExpiredJwtException: JWT expired at 2023-11-19T12:50:42Z. Curren
 [32m2023-11-20 21:10:42.396[0;39m [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
 [32m2023-11-20 21:10:42.396[0;39m [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
 [32m2023-11-20 21:10:42.399[0;39m [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 2 ms
+[32m2023-11-20 21:15:35.069[0;39m [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(7)-127.0.0.1] Application shutdown requested.
+[32m2023-11-20 21:15:35.100[0;39m [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(7)-127.0.0.1] Stopping service [Tomcat]
+[32m2023-11-20 21:15:35.103[0;39m [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(7)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+[32m2023-11-20 21:15:35.110[0;39m [WARN] org.apache.catalina.loader.WebappClassLoaderBase [RMI TCP Connection(7)-127.0.0.1] The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.8.1/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.8.1/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.8.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.8.1/java.lang.Thread.run(Thread.java:833)
+[32m2023-11-20 21:15:35.126[0;39m [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(7)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+[32m2023-11-20 21:15:35.129[0;39m [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(7)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+[32m2023-11-20 21:15:35.153[0;39m [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(7)-127.0.0.1] HikariPool-1 - Shutdown completed.
+[32m2023-11-20 21:31:35.396[0;39m [INFO] com.hexaware.policymanagement.PolicyManagementSystemApplication [main] Starting PolicyManagementSystemApplication using Java 17.0.8.1 on Das-Acer with PID 176 (C:\PolicyManagementSystem\PolicyManagementSystem\Sprint4\PolicyForSure\target\classes started by devan in C:\PolicyManagementSystem\PolicyManagementSystem\Sprint4\PolicyForSure)
+[32m2023-11-20 21:31:35.405[0;39m [INFO] com.hexaware.policymanagement.PolicyManagementSystemApplication [main] No active profile set, falling back to 1 default profile: "default"
+[32m2023-11-20 21:31:37.697[0;39m [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+[32m2023-11-20 21:31:37.811[0;39m [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 97 ms. Found 5 JPA repository interfaces.
+[32m2023-11-20 21:31:39.274[0;39m [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8585 (http)
+[32m2023-11-20 21:31:39.310[0;39m [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+[32m2023-11-20 21:31:39.312[0;39m [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.82]
+[32m2023-11-20 21:31:39.583[0;39m [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+[32m2023-11-20 21:31:39.585[0;39m [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 4074 ms
+[32m2023-11-20 21:31:39.985[0;39m [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+[32m2023-11-20 21:31:40.139[0;39m [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.15.Final
+[32m2023-11-20 21:31:40.578[0;39m [INFO] org.hibernate.annotations.common.Version [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[32m2023-11-20 21:31:40.875[0;39m [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+[32m2023-11-20 21:31:41.603[0;39m [INFO] com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+[32m2023-11-20 21:31:41.713[0;39m [INFO] org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[32m2023-11-20 21:31:43.732[0;39m [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[32m2023-11-20 21:31:43.758[0;39m [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+[32m2023-11-20 21:31:45.959[0;39m [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+[32m2023-11-20 21:31:46.583[0;39m [INFO] org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@72dc7f0a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@18ada4e1, org.springframework.security.web.context.SecurityContextPersistenceFilter@7b8d1537, org.springframework.security.web.header.HeaderWriterFilter@2e640411, org.springframework.security.web.authentication.logout.LogoutFilter@7b8b755d, com.hexaware.policymanagement.filter.JwtAuthFilter@52b77d5e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@530aa75c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4a0a93ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@10cf3e4f, org.springframework.security.web.session.SessionManagementFilter@36109a76, org.springframework.security.web.access.ExceptionTranslationFilter@622c658d, org.springframework.security.web.access.intercept.AuthorizationFilter@2be83e7e]
+[32m2023-11-20 21:31:47.471[0;39m [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8585 (http) with context path ''
+[32m2023-11-20 21:31:48.656[0;39m [INFO] com.hexaware.policymanagement.PolicyManagementSystemApplication [main] Started PolicyManagementSystemApplication in 14.221 seconds (JVM running for 15.955)
+[32m2023-11-20 21:32:14.200[0;39m [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8585-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+[32m2023-11-20 21:32:14.208[0;39m [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Initializing Servlet 'dispatcherServlet'
+[32m2023-11-20 21:32:14.208[0;39m [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8585-exec-1] Completed initialization in 0 ms
+[32m2023-11-20 21:43:31.623[0;39m [INFO] com.hexaware.policymanagement.services.UserServicesImp [http-nio-8585-exec-8] User created successfully: User [userId=44005, fname=Adam, lname=Paul, password=$2a$10$3qxydZjS8fAW2WV1Ygg5nOlcp9V3k9N.y/IyasOY1iXTFNXwJcBSC, email=adam123@gmail.com, mobNo=9876543210, userType=Admin, employerType=Salaried, employerName=TCS, userCategory=A, dob=2020-11-20, panNumber=JHYGS6589H, address=Address [addressId=48010, city=Indore, addressLine=Abc Road, state=Madhya Pradesh, pincode=123456]]
+[32m2023-11-20 21:44:52.871[0;39m [INFO] com.hexaware.policymanagement.services.PolicyServicesImp [http-nio-8585-exec-4] Retrieved all Policies successfully: [Policy [policyId=1, policyName=Jeevan Beema, policyDescription=Life insurance covering life till 85 yrs, policyType=Life Insurance, company=LIC, amount=1000.0, tenure=0, maturityAmount=1.0E7, interest=0.0], Policy [policyId=2, policyName=Health Optima, policyDescription=Health insurance for family, policyType=Health Insurance, company=Star Health, amount=32000.0, tenure=0, maturityAmount=0.0, interest=0.0], Policy [policyId=3, policyName=Tension Free, policyDescription=Investment policy for youngsters, policyType=Benifit policy, company=ET Money, amount=4999.0, tenure=10, maturityAmount=1000000.0, interest=21.0]]
+[32m2023-11-20 21:45:55.893[0;39m [INFO] com.hexaware.policymanagement.services.PolicyServicesImp [http-nio-8585-exec-7] Retrieved Policies by Company successfully: [Policy [policyId=1, policyName=Jeevan Beema, policyDescription=Life insurance covering life till 85 yrs, policyType=Life Insurance, company=LIC, amount=1000.0, tenure=0, maturityAmount=1.0E7, interest=0.0]]
+[32m2023-11-20 21:50:27.713[0;39m [ERROR] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8585-exec-5] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.web.firewall.RequestRejectedException: The request was rejected because the URL contained a potentially malicious String "//"
+	at org.springframework.security.web.firewall.StrictHttpFirewall.rejectedBlocklistedUrls(StrictHttpFirewall.java:535)
+	at org.springframework.security.web.firewall.StrictHttpFirewall.getFirewalledRequest(StrictHttpFirewall.java:505)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:206)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:168)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[32m2023-11-20 21:50:40.841[0;39m [ERROR] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8585-exec-6] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+org.springframework.security.web.firewall.RequestRejectedException: The request was rejected because the URL contained a potentially malicious String "//"
+	at org.springframework.security.web.firewall.StrictHttpFirewall.rejectedBlocklistedUrls(StrictHttpFirewall.java:535)
+	at org.springframework.security.web.firewall.StrictHttpFirewall.getFirewalledRequest(StrictHttpFirewall.java:505)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:206)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:186)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:178)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:153)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:168)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:481)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:130)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:928)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1794)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+[32m2023-11-20 21:50:53.966[0;39m [INFO] com.hexaware.policymanagement.services.PolicyServicesImp [http-nio-8585-exec-7] Policy created successfully: Policy [policyId=4, policyName=CHild Secure, policyDescription=Education Fund, policyType=Childerns Policy, company=Reliance, amount=9999.0, tenure=20, maturityAmount=3000000.0, interest=15.0]
+[32m2023-11-20 21:54:21.849[0;39m [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(26)-127.0.0.1] Application shutdown requested.
+[32m2023-11-20 21:54:21.888[0;39m [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(26)-127.0.0.1] Stopping service [Tomcat]
+[32m2023-11-20 21:54:21.893[0;39m [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [RMI TCP Connection(26)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet'
+[32m2023-11-20 21:54:21.903[0;39m [WARN] org.apache.catalina.loader.WebappClassLoaderBase [RMI TCP Connection(26)-127.0.0.1] The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.8.1/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.8.1/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.8.1/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.8.1/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.8.1/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.8.1/java.lang.Thread.run(Thread.java:833)
+[32m2023-11-20 21:54:21.928[0;39m [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(26)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default'
+[32m2023-11-20 21:54:21.940[0;39m [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(26)-127.0.0.1] HikariPool-1 - Shutdown initiated...
+[32m2023-11-20 21:54:21.975[0;39m [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(26)-127.0.0.1] HikariPool-1 - Shutdown completed.

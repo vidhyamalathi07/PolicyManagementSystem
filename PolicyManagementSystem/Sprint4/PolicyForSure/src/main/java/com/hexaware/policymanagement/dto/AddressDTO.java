@@ -1,7 +1,10 @@
 package com.hexaware.policymanagement.dto;
 
 import com.hexaware.policymanagement.entity.User;
-
+/* Author:Vidhyamalathi
+ * @CreatedOn:-12-11-2023
+ * Description: AddressDTO Class
+ */
 public class AddressDTO 
 {
 	private long addressId;

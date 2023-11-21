@@ -23,7 +23,15 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+/* Author:VidhyaMalathi
+ * @CreatedOn:09-11-2023
+ * Description: Created User Entity Class 
+ */
 
+/* Author:VidhyaMalathi/Devanshu
+ * @UpdatedOn:16-11-2023
+ * Description: Added Validations/Mappings
+ */
 @Entity
 public class UserPolicy implements Serializable
 {

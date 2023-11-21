@@ -6,6 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.hexaware.policymanagement.entity.Policy;
+/* Author:Devanshu
+ * @CreatedOn:-14-11-2023
+ * Description: Policy Repository
+ */
 @Repository
 public interface PolicyRepository extends JpaRepository<Policy, Long> 
 {

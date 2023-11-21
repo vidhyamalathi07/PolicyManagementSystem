@@ -9,6 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.hexaware.policymanagement.entity.User;
 import com.hexaware.policymanagement.entity.UserPolicy;
 
+/* Author:Devanshu
+ * @CreatedOn:-14-11-2023
+ * Description: UserPolicy Repository
+ */
 @Repository
 public interface UserPolicyRepository extends JpaRepository<UserPolicy, Long>
 {	

@@ -1,5 +1,8 @@
 package com.hexaware.policymanagement.dto;
-
+/* Author:Devanshu
+ * @CreatedOn:-17-11-2023
+ * Description: Auth Request class for token gen input
+ */
 public class AuthRequest {
 
 	private String username;

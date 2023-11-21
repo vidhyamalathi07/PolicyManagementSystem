@@ -17,6 +17,14 @@ import com.hexaware.policymanagement.dto.AddressDTO;
 import com.hexaware.policymanagement.entity.Address;
 import com.hexaware.policymanagement.services.IAddressServices;
 
+/* Author:Devanshu
+ * @CreatedOn:-15-11-2023
+ * Description: Address Controller Class
+ */
+/* Author:Devanshu/VidhyaMalathi
+ * @UpdatedOn:-17-11-2023
+ * Description: Assigned Authority
+ */
 @RestController
 @RequestMapping("/api/v1/addresses")
 public class AddressController 

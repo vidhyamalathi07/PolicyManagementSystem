@@ -11,7 +11,15 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 
+/* Author:VidhyaMalathi
+ * @CreatedOn:09-11-2023
+ * Description: Created User Entity Class 
+ */
 
+/* Author:VidhyaMalathi/Devanshu
+ * @UpdatedOn:16-11-2023
+ * Description: Added Validations/Mappings 
+ */
 @Entity
 public class Policy implements Serializable
 {
@@ -20,7 +28,7 @@ public class Policy implements Serializable
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "policy_seq_generator")
-    @SequenceGenerator(name = "policy_seq_generator", sequenceName = "policy_seq", allocationSize = 1)
+    @SequenceGenerator(name = "policy_seq_generator", sequenceName = "policy_seq", allocationSize = 1,initialValue =100000)
 	private long policyId;
 
     @NotEmpty(message = "Policy name cannot be empty")

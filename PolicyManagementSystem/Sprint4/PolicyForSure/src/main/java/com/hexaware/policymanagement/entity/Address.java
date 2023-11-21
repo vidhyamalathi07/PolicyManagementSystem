@@ -15,7 +15,15 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+/* Author:VidhyaMalathi
+ * @CreatedOn:09-11-2023
+ * Description: Created User Entity Class 
+ */
 
+/* Author:VidhyaMalathi/Devanshu
+ * @UpdatedOn:16-11-2023
+ * Description: Added Validations/Mappings 
+ */
 @Entity
 public class Address implements Serializable
 {
@@ -24,7 +32,7 @@ public class Address implements Serializable
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "address_seq_generator")
-    @SequenceGenerator(name = "address_seq_generator", sequenceName = "address_seq", allocationSize = 1)
+    @SequenceGenerator(name = "address_seq_generator", sequenceName = "address_seq", allocationSize = 1, initialValue =130000)
    	private long addressId;
 	@NotEmpty(message = "City cannot be empty")
     @Size(max = 50, message = "City cannot exceed 50 characters")

@@ -18,7 +18,14 @@ import com.hexaware.policymanagement.dto.PolicyDTO;
 import com.hexaware.policymanagement.entity.Policy;
 import com.hexaware.policymanagement.services.IPolicyServices;
 
-
+/* Author:Devanshu
+ * @CreatedOn:-15-11-2023
+ * Description: Address Controller Class
+ */
+/* Author:Devanshu/VidhyaMalathi
+ * @UpdatedOn:-17-11-2023
+ * Description: Assigned Authority
+ */
 @RestController
 @RequestMapping("/api/v1/policies")
 public class PolicyController 

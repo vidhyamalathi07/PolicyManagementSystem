@@ -16,7 +16,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hexaware.policymanagement.dto.PolicyPaymentDTO;
 import com.hexaware.policymanagement.entity.PolicyPayment;
 import com.hexaware.policymanagement.services.IPolicyPaymentServices;
-
+/* Author:Devanshu
+ * @CreatedOn:-15-11-2023
+ * Description: Address Controller Class
+ */
+/* Author:Devanshu
+ * @UpdatedOn:-17-11-2023
+ * Description: Assigned Authority
+ */
 @RestController
 @RequestMapping("/api/v1/policy-payment")
 public class PolicyPaymentController 

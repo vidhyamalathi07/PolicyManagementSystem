@@ -6,7 +6,10 @@ import com.hexaware.policymanagement.entity.Policy;
 import com.hexaware.policymanagement.entity.PolicyPayment;
 import com.hexaware.policymanagement.entity.User;
 
-
+/* Author:Vidhyamalathi
+ * @CreatedOn:-12-11-2023
+ * Description: AddressDTO Class
+ */
 public class UserPolicyDTO 
 {
 	private long policyNo;

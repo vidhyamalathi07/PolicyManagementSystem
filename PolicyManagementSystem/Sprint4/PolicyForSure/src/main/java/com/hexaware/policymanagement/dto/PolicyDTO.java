@@ -1,5 +1,8 @@
 package com.hexaware.policymanagement.dto;
-
+/* Author:Vidhyamalathi
+ * @CreatedOn:-12-11-2023
+ * Description: AddressDTO Class
+ */
 public class PolicyDTO 
 {
 	private long policyId;

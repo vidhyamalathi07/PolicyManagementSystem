@@ -22,9 +22,14 @@ import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-/* Author:Devanshu
- * @UpdatedOn:09-11-2023
- * Description: This is a User Entity Class
+/* Author:VidhyaMalathi
+ * @CreatedOn:09-11-2023
+ * Description: Created User Entity Class 
+ */
+
+/* Author:VidhyaMalathi/Devanshu
+ * @UpdatedOn:16-11-2023
+ * Description: Added Validations/Mappings
  */
 
 @Entity
@@ -33,7 +38,7 @@ public class User implements Serializable
 	private static final long serialVersionUID = 1L;
 		@Id
 		@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_seq_generator")
-	    @SequenceGenerator(name = "user_seq_generator", sequenceName = "user_seq", allocationSize = 1)
+	    @SequenceGenerator(name = "user_seq_generator", sequenceName = "user_seq", allocationSize = 1,initialValue =120000)
 		private long userId;
 		
 		
@@ -48,6 +53,8 @@ public class User implements Serializable
 	    private String lname;
 
 	    @NotEmpty(message = "Password cannot be empty")
+	    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$",
+        message = "Password must contain at least one lowercase letter, one uppercase letter, one digit, and one special character")
 	    private String password;
 
 	    @Email(message = "Invalid email format")

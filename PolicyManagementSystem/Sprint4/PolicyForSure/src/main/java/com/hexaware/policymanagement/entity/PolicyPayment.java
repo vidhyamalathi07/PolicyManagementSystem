@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -15,7 +16,15 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
+/* Author:VidhyaMalathi
+ * @CreatedOn:09-11-2023
+ * Description: Created User Entity Class 
+ */
 
+/* Author:VidhyaMalathi/Devanshu
+ * @UpdatedOn:16-11-2023
+ * Description: Added Validations/Mappings
+ */
 @Entity
 public class PolicyPayment implements Serializable
 {
@@ -23,6 +32,7 @@ public class PolicyPayment implements Serializable
 	private static final long serialVersionUID = 1L;
 	@Id
 	private long txnId;
+    @SequenceGenerator(name = "txn_seq_generator", sequenceName = "txn_seq", allocationSize = 1,initialValue =140000)
 	
 	@NotNull(message = "Payment date cannot be null")
     @PastOrPresent(message = "Payment date must be in the present or past")

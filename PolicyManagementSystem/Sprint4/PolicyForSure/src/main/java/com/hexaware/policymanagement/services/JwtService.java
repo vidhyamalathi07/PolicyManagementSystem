@@ -14,7 +14,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-
+/* Author:Devanshu
+ * @CreatedOn:-18-11-2023
+ * Description: JWT Service class for token generation
+ */
 @Component
 public class JwtService 
 {
@@ -39,7 +42,7 @@ public class JwtService
 				   .setSubject(username)
 				   .setIssuedAt(new Date(System.currentTimeMillis()))
 				   .setExpiration(new Date(System.currentTimeMillis()+1000*60*30))
-				   .signWith(getSignKey() , SignatureAlgorithm.HS256).compact();
+				   .signWith(getSignKey() , SignatureAlgorithm.HS256).compact(); 
 				   
 				   
 	}

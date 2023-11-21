@@ -14,7 +14,14 @@ import com.hexaware.policymanagement.exception.DuplicateUserException;
 import com.hexaware.policymanagement.exception.UserNotFoundException;
 import com.hexaware.policymanagement.repository.AddressRepository;
 import com.hexaware.policymanagement.repository.UserRepository;
-
+/* Author:Devanshu
+ * @CreatedOn:-14-11-2023
+ * Description: User Service Implementaion
+ */
+/* Author:Devanshu
+ * @UpdatedOn:-16-11-2023
+ * Description: Added Exception and logger
+ */
 @Service
 public class UserServicesImp implements IUserServices {
 
